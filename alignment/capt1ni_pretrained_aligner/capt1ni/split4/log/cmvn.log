@@ -1,0 +1,2 @@
+/home/caitlinr/.conda/envs/capti/bin/compute-cmvn-stats --spk2utt=ark:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/spk2utt.scp scp:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/feats.scp ark,scp:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/cmvn.ark,./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/cmvn.scp 
+LOG (compute-cmvn-stats[5.5.1016]:main():featbin/compute-cmvn-stats.cc:171) Done accumulating CMVN stats for 12810 utterances; 0 had errors.
