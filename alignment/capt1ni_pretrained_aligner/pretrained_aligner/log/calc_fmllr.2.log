@@ -1,0 +1,228 @@
+/home/caitlinr/.conda/envs/capti/bin/ali-to-post ark:./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/ali.1.2.ark ark:- 
+/home/caitlinr/.conda/envs/capti/bin/weight-silence-post 0.0 1:2:3:4:5:6:7:8:9:10:11:12:13:14:15 ./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
+/home/caitlinr/.conda/envs/capti/bin/gmm-est-fmllr --verbose=4 --fmllr-update-type=full --spk2utt=ark:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/spk2utt.1.2.scp ./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/final.mdl 'ark,s,cs:apply-cmvn --utt2spk=ark:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/utt2spk.1.2.scp scp:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/cmvn.1.2.scp scp:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/feats.1.2.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats ./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/lda.mat ark:- ark:- |' ark,s,cs:- ark:./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/trans.1.2.ark 
+splice-feats --left-context=3 --right-context=3 ark:- ark:- 
+transform-feats ./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/lda.mat ark:- ark:- 
+apply-cmvn --utt2spk=ark:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/utt2spk.1.2.scp scp:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/cmvn.1.2.scp scp:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/feats.1.2.scp ark:- 
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 9.04204 per frame over 8768 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 10, auxf-impr from fMLLR is 9.04204, over 8768 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 3.96909 per frame over 11517 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 102, auxf-impr from fMLLR is 3.96909, over 11517 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10898
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10899
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10906
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10907
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10908
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10909
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10913
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10916
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10923
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10927
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10928
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10932
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10943
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 108-10944
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 5.91071 per frame over 12277 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 108, auxf-impr from fMLLR is 5.91071, over 12277 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-10981
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-10987
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11133
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11141
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11142
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11149
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11167
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11168
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11198
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11220
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11230
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 111-11241
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.2436 per frame over 38094 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 111, auxf-impr from fMLLR is 4.2436, over 38094 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 112-11269
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 112-11283
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 112-11403
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.10134 per frame over 35802 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 112, auxf-impr from fMLLR is 4.10134, over 35802 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 7.36407 per frame over 6499 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 115, auxf-impr from fMLLR is 7.36407, over 6499 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 6.12889 per frame over 29002 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 117, auxf-impr from fMLLR is 6.12889, over 29002 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 123-12659
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 8.8811 per frame over 2291 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 123, auxf-impr from fMLLR is 8.8811, over 2291 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 125-12716
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 125-12723
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 125-12724
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 125-12743
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 125-12769
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 125-12808
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.06177 per frame over 20772 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 125, auxf-impr from fMLLR is 4.06177, over 20772 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 17-2384
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.16173 per frame over 3976 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 17, auxf-impr from fMLLR is 4.16173, over 3976 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:Update():transform/fmllr-diag-gmm.cc:162) Not updating fMLLR since below min-count: count is 262
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 19, auxf-impr from fMLLR is 0, over 262 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-193
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-262
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-268
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-334
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-368
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-409
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-412
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-450
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-451
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-452
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-480
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-482
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-490
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-531
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 2-534
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.05256 per frame over 41434 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 2, auxf-impr from fMLLR is 4.05256, over 41434 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.08263 per frame over 11044 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 30, auxf-impr from fMLLR is 4.08263, over 11044 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.47005 per frame over 1843 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 33, auxf-impr from fMLLR is 4.47005, over 1843 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 35-3953
+WARNING (gmm-est-fmllr[5.5.1016]:Update():transform/fmllr-diag-gmm.cc:162) Not updating fMLLR since below min-count: count is 0
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 35, auxf-impr from fMLLR is -nan, over 0 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-3966
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-3976
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-3988
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4025
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4026
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4048
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4052
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4058
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4064
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4070
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4078
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4082
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4094
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4102
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4117
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4137
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4165
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4173
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4193
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4207
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4225
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 37-4230
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 3.03591 per frame over 47427 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 37, auxf-impr from fMLLR is 3.03591, over 47427 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 40-4536
+WARNING (gmm-est-fmllr[5.5.1016]:Update():transform/fmllr-diag-gmm.cc:162) Not updating fMLLR since below min-count: count is 187
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 40, auxf-impr from fMLLR is 0, over 187 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 7.39594 per frame over 7731 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 41, auxf-impr from fMLLR is 7.39594, over 7731 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4905
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4912
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4919
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4920
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4931
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4936
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4937
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4951
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4953
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4966
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4967
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4978
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4983
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4995
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4996
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-4999
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5002
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5012
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5013
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5019
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5023
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5031
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5048
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5050
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5053
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5059
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5066
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5068
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5080
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5083
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5088
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5094
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5098
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5099
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5106
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5114
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5123
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5124
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5128
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5134
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5144
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 44-5149
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 5.38451 per frame over 31998 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 44, auxf-impr from fMLLR is 5.38451, over 31998 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 50-5529
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 5.27602 per frame over 1886 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 50, auxf-impr from fMLLR is 5.27602, over 1886 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 72-7281
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.53978 per frame over 16894 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 72, auxf-impr from fMLLR is 4.53978, over 16894 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 74-7365
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 74-7527
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 7.90961 per frame over 50292 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 74, auxf-impr from fMLLR is 7.90961, over 50292 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 8-1341
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 8-1375
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 8-1396
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 8-1449
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 8-1453
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 3.97398 per frame over 37503 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 8, auxf-impr from fMLLR is 3.97398, over 37503 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 5.63352 per frame over 8414 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 80, auxf-impr from fMLLR is 5.63352, over 8414 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:Update():transform/fmllr-diag-gmm.cc:162) Not updating fMLLR since below min-count: count is 405
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 85, auxf-impr from fMLLR is 0, over 405 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-8880
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-8904
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-8914
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-8936
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-8950
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9013
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9058
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9064
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9073
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9110
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9114
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9116
+LOG (ali-to-post[5.5.1016]:main():bin/ali-to-post.cc:73) Converted 3049 alignments.
+LOG (weight-silence-post[5.5.1016]:main():bin/weight-silence-post.cc:95) Done 3049 posteriors.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 86-9127
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 4.86352 per frame over 33610 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 86, auxf-impr from fMLLR is 4.86352, over 33610 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 3.37257 per frame over 27850 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 91, auxf-impr from fMLLR is 3.37257, over 27850 frames.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 5.47611 per frame over 22877 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 92, auxf-impr from fMLLR is 5.47611, over 22877 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9793
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9800
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9808
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9814
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9820
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9839
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9840
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 95-9849
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 5.30226 per frame over 9114 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 95, auxf-impr from fMLLR is 5.30226, over 9114 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 98-9982
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 98-9985
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 98-9987
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 98-9988
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 12.4256 per frame over 884 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 98, auxf-impr from fMLLR is 12.4256, over 884 frames.
+WARNING (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:118) Did not find posteriors for utterance 99-10069
+LOG (apply-cmvn[5.5.1016]:main():featbin/apply-cmvn.cc:162) Applied cepstral mean normalization to 3202 utterances, errors on 0
+LOG (transform-feats[5.5.1016]:main():featbin/transform-feats.cc:158) Overall average [pseudo-]logdet is -91.063 over 890855 frames.
+LOG (transform-feats[5.5.1016]:main():featbin/transform-feats.cc:161) Applied transform to 3202 utterances; 0 had errors.
+LOG (gmm-est-fmllr[5.5.1016]:ComputeFmllrMatrixDiagGmmFull():transform/fmllr-diag-gmm.cc:262) fMLLR objf improvement is 3.02383 per frame over 24652 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:143) For speaker 99, auxf-impr from fMLLR is 3.02383, over 24652 frames.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:188) Done 3049 files, 153 with no posts, 0 with other errors.
+LOG (gmm-est-fmllr[5.5.1016]:main():gmmbin/gmm-est-fmllr.cc:190) Overall fMLLR auxf impr per frame is 4.85052 over 545305 frames.

@@ -1,0 +1,6 @@
+acoustic_model: samromur
+debug: false
+dirty: false
+quiet: false
+use_mp: true
+verbose: true
