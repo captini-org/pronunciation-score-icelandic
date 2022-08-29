@@ -1,0 +1,17 @@
+{
+    "path_to_data": "/home/caitlinr/scratch/capt/data/captini/",
+    "data_folder": "audio_correct_names/",
+    "metadata_file": {
+        "name": "recording_data.tsv",
+        "columns_utt_name": "align_text",
+        "sep": "\t",
+        "speaker_len": 7
+    },
+    "empty_audio_user": "empty_data",
+    "audio_extension": "wav",
+    "text_extension": "lab",
+    "lexicon_file": "placeholder.lex",
+    "dictionary_file": "placeholder.dict",
+    "MFA_model_name": "s215Tv1",
+    "output_folder": "reference-alignment"
+}

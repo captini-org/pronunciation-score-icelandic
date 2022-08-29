@@ -1,0 +1,17 @@
+{
+    "path_to_data": "/home/caitlinr/scratch/tempc/smr215/",
+    "data_folder": "train/",
+    "metadata_file": {
+        "name": "metadata.tsv",
+        "columns_utt_name": "sentence_norm",
+        "sep": "\t",
+        "speaker_len": 7
+    },
+    "empty_audio_user": "empty_data",
+    "audio_extension": "flac",
+    "text_extension": "lab",
+    "lexicon_file": "placeholder.lex",
+    "dictionary_file": "placeholder.dict",
+    "MFA_model_name": "s215Tv0",
+    "output_folder": "smr215T0"
+}
