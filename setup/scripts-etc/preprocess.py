@@ -8,7 +8,7 @@ output_dir = '/home/caitlinr/work/pronunciation-score-icelandic/setup/scripts-et
 
 key_file = output_dir + 'KEY.tsv'
 data_file = corpus_dir + 'recording_data.tsv'
-move_file = output_dir + 'move_exclude.sh'
+move_file = output_dir + 'local/move_exclude.sh'
 
 # exclude typo sentences 
 # and words missing from the current pronunciation dictionary e.g. írárfoss

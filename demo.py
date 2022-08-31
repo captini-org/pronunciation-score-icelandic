@@ -22,8 +22,11 @@ def get_scores(exercise_id, exercise_text, speaker_id, file_id, file_duration, s
         word_aligns,
         phone_aligns)
         
-    return word_scores, phone_scores
-    
+    score_output = {'word_scores': word_scores, 
+        'phone_scores': phone_scores, 'word_aligns': word_aligns,
+        'phone_aligns': phone_aligns}
+    return score_output
+
     
 # score a random utterance from the demo set
 # and print some output 
@@ -36,7 +39,7 @@ def run_random_demo(example,scorer):
     recording_duration = example[13]
     print(f'Scoring exercise {exercise_id}: File {speaker_id}-{recording_id} ({example[8]})')
     
-    word_scores, phone_scores = get_scores(
+    score_output = get_scores(
         exercise_id,
         exercise_text,
         speaker_id,
@@ -44,11 +47,13 @@ def run_random_demo(example,scorer):
         recording_duration,
         scorer)
 
-    display(word_scores, phone_scores)
+    display(score_output)
 
 
 # a way to view pronunciation score output
-def display(word_scores, phone_scores):    
+def display(score_output):  
+    word_scores = score_output['word_scores']
+    phone_scores = score_output['phone_scores']
     for w_s,p_s in zip(word_scores, phone_scores):
         assert w_s[0] == p_s[0]
         print(f'{w_s[0]}\t{w_s[1]}')

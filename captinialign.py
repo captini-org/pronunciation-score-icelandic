@@ -8,9 +8,13 @@ class AlignOneFunction():
     def __init__(self,exercise_text,rec_speaker_id,rec_file_id,rec_duration):
         self.work = './alignment/new/'
         self.wav_dir = './demo-wav/'
-        self.mfa_dir = './alignment/capt1ni_pretrained_aligner/'
-        self.pdict_name = '1_combined_added_lexicon'
+        self.mfa_dir = './alignment/captini_pretrained_aligner/'
+        self.pdict_name = '1_frambordabok_captini_v3'
         self.log_path = self.work+'log.txt'
+        
+# !--- DO NOT CHANGE BELOW HERE 
+#	if you are updating the dictionary or acoustic models ---!
+        
         self.silence_phone = "sil"
         self.silence_word = "<eps>" # !! TODO
         
@@ -80,9 +84,6 @@ class AlignOneFunction():
 
     
     def process_intervals(self,intervals):
-        def cff(sc): # convert seconds to w2v2 feature-frame numbers
-            # controlling for float rounding problems...
-            return int(round( int(float(sc)*1000)*0.05))
         assert len(intervals) > 0 #TODO don't crash if fail to align
         
         words = self.normalised_text.split(' ')
@@ -91,25 +92,29 @@ class AlignOneFunction():
         current_word_begin = None
         w_ix = 0
         p_ix = 0
+        
+        def r2(t):
+        	return round(float(t),2)
+        
         for l in intervals:
             start, dur, phone_int = l.split(' ')[2:]
             phone_label = self.phone_map[phone_int]
-            start , end = cff(start), cff(float(start)+float(dur))
+            start , end = float(start), float(start)+float(dur)
             if phone_label == self.silence_phone:
                 continue
             current_word_id = f'{w_ix:03d}__{words[w_ix]}'
             phone, position = phone_label.rsplit("_",1)
             if position in {"B", "S"}:
                 current_word_begin = start
-            phone_aligns[current_word_id].append((f'{p_ix:03d}__{phone}',start-current_word_begin,end-current_word_begin))
+            phone_aligns[current_word_id].append((f'{p_ix:03d}__{phone}',r2(start-current_word_begin),r2(end-current_word_begin)))
             if position in {"E", "S"}:
-                word_aligns.append((current_word_id, current_word_begin, end))
+                word_aligns.append((current_word_id, r2(current_word_begin), r2(end)))
                 current_word_begin = None
                 w_ix += 1
             p_ix +=1
         
         for w,s,e in word_aligns: # !! TODO
-            assert e-s == phone_aligns[w][-1][2]
+            assert r2(e-s) == phone_aligns[w][-1][2]
    
         return word_aligns, phone_aligns
         

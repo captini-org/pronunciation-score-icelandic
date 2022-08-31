@@ -1,7 +1,0 @@
-/home/caitlinr/.conda/envs/capti/bin/linear-to-nbest ark:./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/ali.1.1.ark ark:./mfa/alignment/capt1ni_pretrained_aligner/capt1ni/split4/text.1.1.int.scp '' '' ark:- 
-/home/caitlinr/.conda/envs/capti/bin/lattice-align-words ./mfa/alignment/capt1ni_pretrained_aligner/dictionary/phones/word_boundary.int ./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
-/home/caitlinr/.conda/envs/capti/bin/lattice-to-phone-lattice ./mfa/alignment/capt1ni_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
-LOG (linear-to-nbest[5.5.1016]:main():latbin/linear-to-nbest.cc:130) Done 3106 n-best entries ,0 had errors.
-LOG (lattice-align-words[5.5.1016]:main():latbin/lattice-align-words.cc:126) Successfully aligned 3106 lattices; 0 had errors.
-LOG (lattice-to-phone-lattice[5.5.1016]:main():latbin/lattice-to-phone-lattice.cc:94) Done converting 3106 lattices.
-LOG (nbest-to-ctm[5.5.1016]:main():latbin/nbest-to-ctm.cc:119) Converted 3106 linear lattices to ctm format; 0 had errors.
