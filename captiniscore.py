@@ -17,6 +17,13 @@ class PronunciationScorer():
         self.new_wav_dir = wav_dir
 
         self.featurize = self.w2v2_featurizer()
+        
+        # convert seconds (alignment timestamps) to feature frames (w2v2)
+        # w2v2 step size is about 20ms, or 50 frames per second
+        # change as needed if not using w2v2 featurizer
+        def cff(sc):
+            return int(float(sc)*50)
+        self.s2f = cff
                 
     # return a function from wav file path to speech embedding
     # see: https://github.com/Bartelds/neural-acoustic-distance/blob/main/extract_features.py
@@ -43,9 +50,12 @@ class PronunciationScorer():
             return hidden_state
 
         return _featurizer
-        
+
         
     def score_one(self,exercise_id,test_speaker,test_file,word_aligns,phone_aligns):
+        word_aligns = [(w,self.s2f(s),self.s2f(e)) for w,s,e in word_aligns]
+        phone_aligns = {w : [(p,self.s2f(s),self.s2f(e)) for p,s,e in w_ps] 
+            for w, w_ps in phone_aligns.items()}
     
         reference_path = f'{self.reference_feat_dir}exercise_{exercise_id}.pickle'
         with open(reference_path,'rb') as handle:
@@ -130,7 +140,6 @@ class PronunciationScorer():
                 
             return word_avg_costs, phone_avg_costs
           
-        
         
         l1_w_costs, l1_p_costs = _compare('L1')
         l2_w_costs, l2_p_costs = _compare('L2')
