@@ -6,26 +6,19 @@ demo: first version of pronunciation score module for icelandic
 
 When there are problems, please contact caitlinr@ru.is
 
-## Setup
+## To install
 
-Using a virtual environment is recommended. The following commands were used to install requirements in conda, but may change on different systems:
-
+A virtual environment is recommended. The following commands can be used to install requirements, but may change on different systems:
 ```
 conda create --name captinidemo python=3.10
 conda activate captinidemo
-conda install -c conda-forge montreal-forced-aligner=2.0.0rc6
 conda install -c conda-forge dtw-python 
+conda install -c conda-forge pysoundfile 
+conda install -c conda-forge kaldi 
 conda install -c conda-forge transformers
+conda install -c conda-forge gcc=12.1.0
 ```
-If torch and soundfile were not automatically installed, add them as well.
-
-Cuda is optional, it can also run on CPU.
-
- 
-If you already have Kaldi, it may not be necessary to install Montreal Forced Aligner. 
-Check `shutil.which("compute-mfcc-feats")`
-If it returns a valid path to run the kaldi tool (along with the other kaldi functions called in `captinialign.py`) 
-then you might not need to install MFA.
+Cuda is optional, this can also run on CPU.
 
 ## Scoring vowel length
 
@@ -39,18 +32,13 @@ This is not implemented within the pronunciation module itself. The following re
 - Many works cited & discussed in the introduction of Pind 1999
 - Flego, S. M., & Berkson, K. H. (2020). A Phonetic Illustration of the Sound System of Icelandic. IULC Working Papers, 20(1).
 
-Please understand this measurement has not ever been tried for L2 Icelandic speakers, as far as I know. But the figures of Pind (1995, 1999) for L1 speakers are encouraging.
+Please understand this measurement has not ever been tried for L2 Icelandic speakers, as far as known. But the figures of Pind (1995, 1999) for L1 speakers are encouraging.
 
 
 
 ## Notes
 
-The Kaldi acoustic models and pronunciation dictionary (lexicon) inside the `alignment` folder must NOT be 
-released or distributed in any public way. 
-These are for temporary demonstration purposes only, using pre-existing resources, 
-compiled from various and partially unknown sources. 
-Therefore, it is impossible to attribute them or gain permissions.
-They must be replaced before any software publication.
+Please see [about setup](https://github.com/captini-org/pronunciation-score-icelandic/blob/main/setup/setup.md) for documentation of how this demo was created. You do not need to repeat these procedures in order to run the provided demo.
 
 The files that Kaldi creates during forced alignment are not currently deleted. 
 Therefore, they will accumulate in `alignment/new/` (one example included). 
