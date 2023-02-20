@@ -2,14 +2,26 @@ import shutil, os, subprocess, typing
 from random import choice
 from collections import defaultdict
 
+class AlignmentError(RuntimeError):
+    ...
 
 class AlignOneFunction():
 
-    def __init__(self,exercise_text,rec_speaker_id,rec_file_id,rec_duration):
-        self.work = './alignment/new/'
-        self.wav_dir = './demo-wav/'
-        self.mfa_dir = './alignment/captini_pretrained_aligner/'
-        self.pdict_name = '1_frambordabok_captini_v3'
+    def __init__(
+        self,
+        exercise_text,
+        rec_speaker_id,
+        rec_file_id,
+        rec_duration,
+        work_dir='./alignment/new/',
+        wav_dir='./demo-wav/',
+        mfa_dir='./alignment/captini_pretrained_aligner/',
+        pdict_name='1_frambordabok_captini_v3',
+    ):
+        self.work = work_dir
+        self.wav_dir = wav_dir
+        self.mfa_dir = mfa_dir
+        self.pdict_name = pdict_name
         self.log_path = self.work+'log.txt'
         
 # !--- DO NOT CHANGE BELOW HERE 
@@ -84,8 +96,9 @@ class AlignOneFunction():
 
     
     def process_intervals(self,intervals):
-        assert len(intervals) > 0 #TODO don't crash if fail to align
-        
+        if len(intervals) == 0:
+            raise AlignmentError("No intervals after aligning.")
+
         words = self.normalised_text.split(' ')
         word_aligns = []
         phone_aligns = defaultdict(list)
@@ -94,8 +107,8 @@ class AlignOneFunction():
         p_ix = 0
         
         def r2(t):
-        	return round(float(t),2)
-        
+            return round(float(t),2)
+
         for l in intervals:
             start, dur, phone_int = l.split(' ')[2:]
             phone_label = self.phone_map[phone_int]
@@ -114,8 +127,9 @@ class AlignOneFunction():
             p_ix +=1
         
         for w,s,e in word_aligns: # !! TODO
-            assert r2(e-s) == phone_aligns[w][-1][2]
-   
+            if r2(e-s) != phone_aligns[w][-1][2]:
+                raise AlignmentError("Alignment failure.")
+
         return word_aligns, phone_aligns
         
         
