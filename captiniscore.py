@@ -116,7 +116,7 @@ class PronunciationScorer():
             if np.isnan(l1) or np.isnan(l2):
                 return('TOO SHORT TO SCORE')
             else:
-                return round(100*(l2-l1)/(l2+l1),2)     
+                return (l2-l1)/(l2+l1)
             
             
         def _compare (comp_set): # call with 'L1' or 'L2' 
