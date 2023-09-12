@@ -10,16 +10,13 @@ class AlignOneFunction():
     def __init__(
         self,
         exercise_text,
-        rec_speaker_id,
-        rec_file_id,
+        rec_file_path,
         rec_duration,
         work_dir='./alignment/new/',
-        wav_dir='./demo-wav/',
         mfa_dir='./alignment/captini_pretrained_aligner/',
-        pdict_name='1_frambordabok_captini_v3',
+        pdict_name='1_CAPTINI',
     ):
         self.work = work_dir
-        self.wav_dir = wav_dir
         self.mfa_dir = mfa_dir
         self.pdict_name = pdict_name
         self.log_path = self.work+'log.txt'
@@ -30,11 +27,10 @@ class AlignOneFunction():
         self.silence_phone = "sil"
         self.silence_word = "<eps>" # !! TODO
         
-        self.rec_id = rec_file_id
-        self.speaker_id = rec_speaker_id
+        self.rec_path = rec_file_path
         self.normalised_text = exercise_text
         self.duration = rec_duration
-        self.long_id = f'{self.speaker_id}-{self.rec_id}'
+        self.long_id = rec_file_path.split('/')[-1].replace('.wav','')
         
         # files already exist:
         self.disambig_path = self.mfa_dir+'dictionary/phones/disambiguation_symbols.int'
@@ -72,10 +68,10 @@ class AlignOneFunction():
             f.write('\n')
             f.close()
     
-        wav_scp_contents = self.long_id+' ' +self.wav_dir+self.speaker_id+'/'+self.long_id+'.wav'
+        wav_scp_contents = self.long_id+' ' +self.rec_path
         temp_file(self.wav_scp, wav_scp_contents)
         
-        segments_scp_contents = self.long_id + ' ' + self.long_id + ' 0.0 ' + self.duration
+        segments_scp_contents = self.long_id + ' ' + self.long_id + ' 0.0 ' + str(round(self.duration,2))
         temp_file(self.segments_scp, segments_scp_contents)
         
         #! TODO change this for cmvn by speaker
@@ -85,14 +81,15 @@ class AlignOneFunction():
         word_map_path = self.mfa_dir+'dictionary/'+self.pdict_name+'/words.txt'
         with open(word_map_path,'r') as handle:
             word_map = handle.read().splitlines()
-        word_map = [l.split(' ') for l in word_map]
+        #word_map = [l.split(' ') for l in word_map]
+        word_map = [l.split('\t') for l in word_map] 
         word_map = {l[0]:l[1] for l in word_map}
         
         text_int_contents = self.long_id+' '+' '.join([word_map[word] for word in self.normalised_text.split(' ')])
         temp_file(self.text_int, text_int_contents)
         
         with open(self.phone_map_path,'r') as handle:
-            self.phone_map = {l.split(' ')[1]:l.split(' ')[0] for l in handle.read().splitlines()}
+            self.phone_map = {l.split('\t')[1]:l.split('\t')[0] for l in handle.read().splitlines()}
 
     
     def process_intervals(self,intervals):
@@ -150,6 +147,7 @@ class AlignOneFunction():
         with open(self.log_path, "w") as log_file:
         
         # compile training graphs:
+
             graph_proc = subprocess.Popen(
                 [
                     shutil.which("compile-train-graphs"),
@@ -319,8 +317,8 @@ class AlignOneFunction():
         return word_aligns, phone_aligns
       
         
-def makeAlign(exercise_text,rec_speaker_id,rec_file_id,rec_duration):
-    do_align = AlignOneFunction(exercise_text,rec_speaker_id,rec_file_id,rec_duration)
+def makeAlign(exercise_text,user_file_path,rec_duration):
+    do_align = AlignOneFunction(exercise_text,user_file_path,rec_duration)
     return do_align.align()
     
 
