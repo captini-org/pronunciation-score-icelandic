@@ -6,30 +6,30 @@ COULD NOT create scoring model for task 5 "ð" (missing data)
 COULD NOT create scoring model for task 6 "e" (missing data)
 COULD NOT create scoring model for task 7 "é" (missing data)
 Created scoring model for task 8 "f"
-COULD NOT create scoring model for task 9 "g" (missing data)
+Created scoring model for task 9 "g"
 Created scoring model for task 10 "h"
 Created scoring model for task 11 "i"
-COULD NOT create scoring model for task 12 "í" (missing data)
+Created scoring model for task 12 "í"
 Created scoring model for task 13 "j"
 Created scoring model for task 14 "k"
 Created scoring model for task 15 "l"
 Created scoring model for task 16 "m"
-COULD NOT create scoring model for task 17 "n" (missing data)
-COULD NOT create scoring model for task 18 "o" (missing data)
+Created scoring model for task 17 "n"
+Created scoring model for task 18 "o"
 Created scoring model for task 19 "ó"
 Created scoring model for task 20 "p"
 Created scoring model for task 21 "r"
-COULD NOT create scoring model for task 22 "s" (missing data)
+Created scoring model for task 22 "s"
 Created scoring model for task 23 "t"
 Created scoring model for task 24 "u"
 Created scoring model for task 25 "ú"
 Created scoring model for task 26 "v"
-COULD NOT create scoring model for task 27 "y" (missing data)
+Created scoring model for task 27 "y"
 Created scoring model for task 28 "ý"
 Created scoring model for task 29 "x"
 Created scoring model for task 30 "þ"
 Created scoring model for task 31 "æ"
-COULD NOT create scoring model for task 32 "ö" (missing data)
+Created scoring model for task 32 "ö"
 Created scoring model for task 33 "au"
 Created scoring model for task 34 "ei"
 Created scoring model for task 35 "ey"
@@ -49,17 +49,17 @@ Created scoring model for task 48 "Hvaðan ertu?"
 Created scoring model for task 49 "Ég er frá Þýskalandi."
 Created scoring model for task 50 "hvar – taska"
 Created scoring model for task 51 "mín – íslenska"
-COULD NOT create scoring model for task 52 "þau – austur" (missing data)
+Created scoring model for task 52 "þau – austur"
 Created scoring model for task 53 "lesa – lest"
 Created scoring model for task 54 "koma – komma"
 Created scoring model for task 55 "föt – föst"
 Created scoring model for task 56 "Þetta er taskan mín."
 Created scoring model for task 57 "Er þetta taskan þín?"
 Created scoring model for task 58 "Hvar er taskan þín?"
-COULD NOT create scoring model for task 59 "Hún er á borðinu." (missing data)
-COULD NOT create scoring model for task 60 "Hér er handklæðið mitt." (missing data)
+Created scoring model for task 59 "Hún er á borðinu."
+Created scoring model for task 60 "Hér er handklæðið mitt."
 Created scoring model for task 61 "Hvar er handklæðið þitt?"
-COULD NOT create scoring model for task 62 "Konan býr í Reykjavík." (missing data)
+Created scoring model for task 62 "Konan býr í Reykjavík."
 Created scoring model for task 63 "Vinur hennar býr á Akureyri."
 COULD NOT create scoring model for task 64 "Reykjavík er höfuðborg Íslands." (missing data)
 Created scoring model for task 65 "Hún er eina borg landsins."
@@ -67,11 +67,11 @@ Created scoring model for task 66 "við – með"
 Created scoring model for task 67 "synda – senda"
 Created scoring model for task 68 "klukkan – umferð"
 Created scoring model for task 69 "tölum – tvö"
-COULD NOT create scoring model for task 70 "for – fór – för" (missing data)
+Created scoring model for task 70 "for – fór – för"
 Created scoring model for task 71 "fornum – fórnum – förnum"
 Created scoring model for task 72 "heitur – reykja"
 Created scoring model for task 73 "heitt – reykt"
-COULD NOT create scoring model for task 74 "Við sendum bréf til Englands." (missing data)
+Created scoring model for task 74 "Við sendum bréf til Englands."
 Created scoring model for task 75 "Hvert sendið þið bréf?"
 Created scoring model for task 76 "Ég tala dönsku og frönsku."
 Created scoring model for task 77 "Klukkan fjögur er mikil umferð."
@@ -82,14 +82,14 @@ Created scoring model for task 81 "Styttan er í Reykjavík."
 Created scoring model for task 82 "Styttan er af Jóni."
 Created scoring model for task 83 "Jón er frægur maður."
 Created scoring model for task 84 "Í Reykjavík eru bæði falleg og ljót hús."
-COULD NOT create scoring model for task 85 "Ég fer í heita pottinn." (missing data)
-COULD NOT create scoring model for task 86 "Ferð þú í kalda pottinn?" (missing data)
+Created scoring model for task 85 "Ég fer í heita pottinn."
+Created scoring model for task 86 "Ferð þú í kalda pottinn?"
 Created scoring model for task 87 "Þetta hús er hvítt."
 Created scoring model for task 88 "Ég bý í hvítu húsi."
 Created scoring model for task 89 "Er þetta sími eða spjaldtölva?"
 Created scoring model for task 90 "Við ætlum að fara í Nauthólsvík."
 Created scoring model for task 91 "Munið að taka með handklæði!"
-COULD NOT create scoring model for task 92 "lest – list – líst" (missing data)
+Created scoring model for task 92 "lest – list – líst"
 Created scoring model for task 93 "Dísa les mikið."
 Created scoring model for task 94 "furum – förum"
 Created scoring model for task 95 "undum – öndum"
@@ -177,7 +177,7 @@ Created scoring model for task 176 "þangað – banki"
 Created scoring model for task 177 "fingur – syngja"
 Created scoring model for task 178 "lengi – skenkja"
 Created scoring model for task 179 "ungur – hlunkur"
-COULD NOT create scoring model for task 180 "söngur – pönk" (missing data)
+Created scoring model for task 180 "söngur – pönk"
 Created scoring model for task 181 "Köngulóin söng pönktónlist!"
 Created scoring model for task 182 "Ætlarðu í bankann?"
 Created scoring model for task 183 "Veistu hvað er langt þangað?"
@@ -189,8 +189,8 @@ Created scoring model for task 188 "Það eru oftast fimm fingur á einni hendi.
 Created scoring model for task 189 "Hinkraðu aðeins og syngdu eitt lag enn."
 Created scoring model for task 190 "daginn – lagið"
 Created scoring model for task 191 "segja – segir"
-COULD NOT create scoring model for task 192 "stigi – snigill" (missing data)
-COULD NOT create scoring model for task 193 "flygill – flygildi" (missing data)
+Created scoring model for task 192 "stigi – snigill"
+Created scoring model for task 193 "flygill – flygildi"
 Created scoring model for task 194 "Bogi býr í Kópavogi."
 Created scoring model for task 195 "Huginn er í löngu flugi."
 Created scoring model for task 196 "Tröllaskagi er á Norðurlandi."
@@ -231,7 +231,7 @@ Created scoring model for task 230 "Undir Eyjafjöllum eru margir fossar."
 Created scoring model for task 231 "Seljalandsfoss, Skógafoss og Írárfoss."
 Created scoring model for task 232 "Góðan dag. Velkomin á Listasafn Íslands."
 Created scoring model for task 233 "Ég ætla að fá tvo miða."
-COULD NOT create scoring model for task 234 "Það eru 400 (fjögur hundruð) krónur." (missing data)
+Created scoring model for task 234 "Það eru 400 (fjögur hundruð) krónur."
 Created scoring model for task 235 "Gjörðu svo vel."
 Created scoring model for task 236 "Góðan dag. Hvað kostar miðinn?"
 Created scoring model for task 237 "Takk fyrir og góða skemmtun."
@@ -244,7 +244,7 @@ Created scoring model for task 243 "Verði ykkur að góðu."
 Created scoring model for task 244 "Viltu poka?"
 Created scoring model for task 245 "Já takk, þrjá."
 Created scoring model for task 246 "upplýsingar – appið"
-COULD NOT create scoring model for task 247 "náttúra – þetta" (missing data)
+Created scoring model for task 247 "náttúra – þetta"
 Created scoring model for task 248 "takk – þakka"
 Created scoring model for task 249 "ekki – drykkja"
 Created scoring model for task 250 "epli – vopnið"
@@ -259,7 +259,7 @@ Created scoring model for task 258 "Hér eru átta flottar blokkir."
 Created scoring model for task 259 "Hrekkjavaka er gamall írskur siður."
 Created scoring model for task 260 "hjálpa – úlpa"
 Created scoring model for task 261 "hollt – kalt"
-COULD NOT create scoring model for task 262 "fólk – mjólk" (missing data)
+Created scoring model for task 262 "fólk – mjólk"
 Created scoring model for task 263 "sjónvarp – þorp"
 Created scoring model for task 264 "svartur – kort"
 Created scoring model for task 265 "orka – Björk"
@@ -270,9 +270,9 @@ Created scoring model for task 269 "Þorpið er ekki svo stórt."
 Created scoring model for task 270 "Flestir Bandaríkjamenn borða kalkún á þakkargjörðarhátíðinni."
 Created scoring model for task 271 "Björk er fræg íslensk söngkona."
 Created scoring model for task 272 "Tónlist Bjarkar finnst mörgum heillandi."
-COULD NOT create scoring model for task 273 "sagt – byggt" (missing data)
+Created scoring model for task 273 "sagt – byggt"
 Created scoring model for task 274 "sekt – slökkti"
-COULD NOT create scoring model for task 275 "september – keypti" (missing data)
+Created scoring model for task 275 "september – keypti"
 Created scoring model for task 276 "keppti – sleppt"
 Created scoring model for task 277 "Ég hef ekki sagt það!"
 Created scoring model for task 278 "Þau hafa byggt stórt hús."
@@ -285,12 +285,12 @@ Created scoring model for task 284 "Það skiptir engu máli!"
 Created scoring model for task 285 "hægt – hætt"
 Created scoring model for task 286 "Haustfríið er í október."
 Created scoring model for task 287 "tefla – Keflavík"
-COULD NOT create scoring model for task 288 "skafl – afl" (missing data)
-COULD NOT create scoring model for task 289 "Hafnarfjörður – efni" (missing data)
+Created scoring model for task 288 "skafl – afl"
+Created scoring model for task 289 "Hafnarfjörður – efni"
 Created scoring model for task 290 "nafn – stofn"
 Created scoring model for task 291 "regla – lögregla"
 Created scoring model for task 292 "hagl – rugl"
-COULD NOT create scoring model for task 293 "rigna – þögn" (missing data)
+Created scoring model for task 293 "rigna – þögn"
 Created scoring model for task 294 "skyggni – skyggn"
 Created scoring model for task 295 "Hann er með frjótt ímyndunarafl."
 Created scoring model for task 296 "Mér finnst gaman að tefla í Keflavík."
@@ -302,7 +302,7 @@ Created scoring model for task 301 "perla – snarl"
 Created scoring model for task 302 "hérna – þarna"
 Created scoring model for task 303 "ruslið – kosningar"
 Created scoring model for task 304 "Snjórinn er sleipur!"
-COULD NOT create scoring model for task 305 "kalla – bolla" (missing data)
+Created scoring model for task 305 "kalla – bolla"
 Created scoring model for task 306 "Hallgrímur elskar rjómabollur."
 Created scoring model for task 307 "einn – seinna"
 Created scoring model for task 308 "Sýndu mér enn einn!"
@@ -343,7 +343,7 @@ Created scoring model for task 342 "Viltu að ég hjálpi honum?"
 Created scoring model for task 343 "margt"
 Created scoring model for task 344 "íslenskt"
 Created scoring model for task 345 "morgni"
-COULD NOT create scoring model for task 346 "fylgdi" (missing data)
+Created scoring model for task 346 "fylgdi"
 Created scoring model for task 347 "sigldi"
 Created scoring model for task 348 "fylgt"
 Created scoring model for task 349 "birgðir"
@@ -386,7 +386,7 @@ Created scoring model for task 385 "Skáld er einhver sem yrkir ljóð."
 Created scoring model for task 386 "Jónas Hallgrímsson var líka þýðandi."
 Created scoring model for task 387 "Jónas Hallgrímsson bjó til orð."
 Created scoring model for task 388 "Til dæmis: aðdráttarafl, sjónauki og sporbaugur."
-COULD NOT create scoring model for task 389 "kæri – kæra – kæru" (missing data)
+Created scoring model for task 389 "kæri – kæra – kæru"
 Created scoring model for task 390 "Ég er glaður, þeir eru glaðir, þær eru glaðar."
 Created scoring model for task 391 "Hann veiddi fisk en þau veiddu humar."
 Created scoring model for task 392 "Finnst þér gaman að veiða fisk?"
@@ -397,7 +397,7 @@ Created scoring model for task 396 "Okkur vantar marga stóla og margar tölvur.
 Created scoring model for task 397 "Nemendurnir spurðu margra spurninga."
 Created scoring model for task 398 "Þær bjuggu í París í mörg ár."
 Created scoring model for task 399 "Ég fer til Parísar í næstu viku."
-COULD NOT create scoring model for task 400 "16. (sextándi) nóvember er dagur íslenskrar tungu." (missing data)
+Created scoring model for task 400 "16. (sextándi) nóvember er dagur íslenskrar tungu."
 Created scoring model for task 401 "Á degi íslenskrar tungu eru margir viðburðir."
 Created scoring model for task 402 "Ég horfði á hann."
 Created scoring model for task 403 "Talaðu við hana."
@@ -460,4 +460,4 @@ COULD NOT create scoring model for task 459 "vinna – synda" (missing data)
 COULD NOT create scoring model for task 460 "ágúst – Lára" (missing data)
 COULD NOT create scoring model for task 461 "austur – laust" (missing data)
 Created scoring model for task 462 "lært – ætla"
-COULD NOT create scoring model for task 463 "læra – kæra" (missing data)
+Created scoring model for task 463 "læra – kæra"

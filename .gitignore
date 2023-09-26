@@ -3,3 +3,4 @@ setup/scripts-etc/local/
 setup/pdicts/
 __pycache__/
 
+.DS_Store
