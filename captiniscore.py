@@ -9,12 +9,11 @@ transformers.logging.set_verbosity(transformers.logging.ERROR)
 
 class PronunciationScorer():
 
-    def __init__(self, wav_dir, reference_feat_dir, model_path, model_layer): 
+    def __init__(self, reference_feat_dir, model_path, model_layer): 
 
         self.reference_feat_dir = reference_feat_dir
         self.model_path = model_path
         self.model_layer = model_layer
-        self.new_wav_dir = wav_dir
 
         self.featurize = self.w2v2_featurizer()
         
@@ -51,19 +50,26 @@ class PronunciationScorer():
 
         return _featurizer
 
-        
-    def score_one(self,exercise_id,test_speaker,test_file,word_aligns,phone_aligns):
+
+    def task_scorer(self,exercise_id):
+        reference_path = f'{self.reference_feat_dir}task_{exercise_id}.pickle'
+        with open(reference_path,'rb') as handle:
+            reference_sets = pickle.load(handle)
+        taskwords = ' '.join([w.split('__')[1] for w in sorted(list(reference_sets['L1'].keys()))])
+        return(taskwords, reference_sets)
+
+    
+    def score_one(self,reference_sets,test_audio_path,word_aligns,phone_aligns):
         word_aligns = [(w,self.s2f(s),self.s2f(e)) for w,s,e in word_aligns]
         phone_aligns = {w : [(p,self.s2f(s),self.s2f(e)) for p,s,e in w_ps] 
             for w, w_ps in phone_aligns.items()}
     
-        reference_path = f'{self.reference_feat_dir}exercise_{exercise_id}.pickle'
-        with open(reference_path,'rb') as handle:
-            reference_sets = pickle.load(handle)
+        #reference_path = f'{self.reference_feat_dir}task_{exercise_id}.pickle'
+        #with open(reference_path,'rb') as handle:
+        #    reference_sets = pickle.load(handle)
         assert phone_aligns.keys() == reference_sets['L1'].keys()
                 
-        test_wav_path = f'{self.new_wav_dir}{test_speaker}/{test_speaker}-{test_file}.wav'
-        test_feats = self.featurize(test_wav_path)
+        test_feats = self.featurize(test_audio_path)
         test_word_feats = {w:test_feats[s:e] for w,s,e in word_aligns}
         
         

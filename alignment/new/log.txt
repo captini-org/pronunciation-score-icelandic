@@ -1,29 +1,29 @@
-/home/caitlinr/.conda/envs/cap4/bin/compile-train-graphs --read-disambig-syms=./alignment/captini_pretrained_aligner/dictionary/phones/disambiguation_symbols.int ./alignment/captini_pretrained_aligner/pretrained_aligner/tree ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ./alignment/captini_pretrained_aligner/dictionary/1_frambordabok_captini_v3/L.fst ark:./alignment/new/024582-1878155_text.int ark:./alignment/new/024582-1878155_fsts.ark 
-LOG (compile-train-graphs[5.5.1016]:main():bin/compile-train-graphs.cc:147) compile-train-graphs: succeeded for 1 graphs, failed for 0
-/home/caitlinr/.conda/envs/cap4/bin/extract-segments scp:./alignment/new/024582-1878155_wav.scp ./alignment/new/024582-1878155_segments.scp ark:- 
-/home/caitlinr/.conda/envs/cap4/bin/copy-feats --verbose=2 --compress=true ark:- ark,scp:./alignment/new/024582-1878155_feats.ark,./alignment/new/024582-1878155_feats.scp 
-LOG (extract-segments[5.5.1016]:main():featbin/extract-segments.cc:194) Successfully processed 1 lines out of 1 in the segments file. 
-LOG (copy-feats[5.5.1016]:main():featbin/copy-feats.cc:143) Copied 1 feature matrices.
-/home/caitlinr/.conda/envs/cap4/bin/compute-cmvn-stats --spk2utt=ark:./alignment/new/024582-1878155_spk2utt.scp scp:./alignment/new/024582-1878155_feats.scp ark,scp:./alignment/new/024582-1878155_cmvn.ark,./alignment/new/024582-1878155_cmvn.scp 
-LOG (compute-cmvn-stats[5.5.1016]:main():featbin/compute-cmvn-stats.cc:171) Done accumulating CMVN stats for 1 utterances; 0 had errors.
-/home/caitlinr/.conda/envs/cap4/bin/linear-to-nbest ark:- ark:./alignment/new/024582-1878155_text.int '' '' ark:- 
-/home/caitlinr/.conda/envs/cap4/bin/lattice-align-words ./alignment/captini_pretrained_aligner/dictionary/phones/word_boundary.int ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
-/home/caitlinr/.conda/envs/cap4/bin/lattice-to-phone-lattice ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
-/home/caitlinr/.conda/envs/cap4/bin/gmm-align-compiled --transition-scale=1.0 --acoustic-scale=0.1 --self-loop-scale=0.1 --beam=10 --retry-beam=40 --careful=false ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ark:./alignment/new/024582-1878155_fsts.ark 'ark,s,cs:apply-cmvn --utt2spk=ark:./alignment/new/024582-1878155_utt2spk.scp scp:./alignment/new/024582-1878155_cmvn.scp scp:./alignment/new/024582-1878155_feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats ./alignment/captini_pretrained_aligner/pretrained_aligner/lda.mat ark:- ark:- |' ark:- ark,t:./alignment/new/024582-1878155_likelihoods.scp 
+/home/caitlinr/.conda/envs/cap23pmodel/bin/compile-train-graphs --read-disambig-syms=./alignment/captini_pretrained_aligner/dictionary/phones/disambiguation_symbols.int ./alignment/captini_pretrained_aligner/pretrained_aligner/tree ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ./alignment/captini_pretrained_aligner/dictionary/1_CAPTINI/L.fst ark:./alignment/new/024897-1955981_text.int ark:./alignment/new/024897-1955981_fsts.ark 
+LOG (compile-train-graphs[5.5.1068]:main():bin/compile-train-graphs.cc:147) compile-train-graphs: succeeded for 1 graphs, failed for 0
+/home/caitlinr/.conda/envs/cap23pmodel/bin/extract-segments scp:./alignment/new/024897-1955981_wav.scp ./alignment/new/024897-1955981_segments.scp ark:- 
+LOG (extract-segments[5.5.1068]:main():featbin/extract-segments.cc:194) Successfully processed 1 lines out of 1 in the segments file. 
+/home/caitlinr/.conda/envs/cap23pmodel/bin/copy-feats --verbose=2 --compress=true ark:- ark,scp:./alignment/new/024897-1955981_feats.ark,./alignment/new/024897-1955981_feats.scp 
+LOG (copy-feats[5.5.1068]:main():featbin/copy-feats.cc:143) Copied 1 feature matrices.
+/home/caitlinr/.conda/envs/cap23pmodel/bin/compute-cmvn-stats --spk2utt=ark:./alignment/new/024897-1955981_spk2utt.scp scp:./alignment/new/024897-1955981_feats.scp ark,scp:./alignment/new/024897-1955981_cmvn.ark,./alignment/new/024897-1955981_cmvn.scp 
+LOG (compute-cmvn-stats[5.5.1068]:main():featbin/compute-cmvn-stats.cc:171) Done accumulating CMVN stats for 1 utterances; 0 had errors.
+/home/caitlinr/.conda/envs/cap23pmodel/bin/lattice-to-phone-lattice ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
+/home/caitlinr/.conda/envs/cap23pmodel/bin/gmm-align-compiled --transition-scale=1.0 --acoustic-scale=0.1 --self-loop-scale=0.1 --beam=10 --retry-beam=40 --careful=false ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ark:./alignment/new/024897-1955981_fsts.ark 'ark,s,cs:apply-cmvn --utt2spk=ark:./alignment/new/024897-1955981_utt2spk.scp scp:./alignment/new/024897-1955981_cmvn.scp scp:./alignment/new/024897-1955981_feats.scp ark:- | splice-feats --left-context=3 --right-context=3 ark:- ark:- | transform-feats ./alignment/captini_pretrained_aligner/pretrained_aligner/lda.mat ark:- ark:- |' ark:- ark,t:./alignment/new/024897-1955981_likelihoods.scp 
+/home/caitlinr/.conda/envs/cap23pmodel/bin/linear-to-nbest ark:- ark:./alignment/new/024897-1955981_text.int '' '' ark:- 
+/home/caitlinr/.conda/envs/cap23pmodel/bin/lattice-align-words ./alignment/captini_pretrained_aligner/dictionary/phones/word_boundary.int ./alignment/captini_pretrained_aligner/pretrained_aligner/final.mdl ark:- ark:- 
 transform-feats ./alignment/captini_pretrained_aligner/pretrained_aligner/lda.mat ark:- ark:- 
+apply-cmvn --utt2spk=ark:./alignment/new/024897-1955981_utt2spk.scp scp:./alignment/new/024897-1955981_cmvn.scp scp:./alignment/new/024897-1955981_feats.scp ark:- 
 splice-feats --left-context=3 --right-context=3 ark:- ark:- 
-apply-cmvn --utt2spk=ark:./alignment/new/024582-1878155_utt2spk.scp scp:./alignment/new/024582-1878155_cmvn.scp scp:./alignment/new/024582-1878155_feats.scp ark:- 
-LOG (apply-cmvn[5.5.1016]:main():featbin/apply-cmvn.cc:162) Applied cepstral mean normalization to 1 utterances, errors on 0
-LOG (transform-feats[5.5.1016]:main():featbin/transform-feats.cc:158) Overall average [pseudo-]logdet is -96.9466 over 405 frames.
-LOG (transform-feats[5.5.1016]:main():featbin/transform-feats.cc:161) Applied transform to 1 utterances; 0 had errors.
-LOG (gmm-align-compiled[5.5.1016]:main():gmmbin/gmm-align-compiled.cc:127) 024582-1878155
-LOG (gmm-align-compiled[5.5.1016]:main():gmmbin/gmm-align-compiled.cc:135) Overall log-likelihood per frame is -50.8202 over 405 frames.
-LOG (gmm-align-compiled[5.5.1016]:main():gmmbin/gmm-align-compiled.cc:137) Retried 0 out of 1 utterances.
-LOG (gmm-align-compiled[5.5.1016]:main():gmmbin/gmm-align-compiled.cc:139) Done 1, errors on 0
-LOG (linear-to-nbest[5.5.1016]:main():latbin/linear-to-nbest.cc:130) Done 1 n-best entries ,0 had errors.
-LOG (lattice-align-words[5.5.1016]:main():latbin/lattice-align-words.cc:126) Successfully aligned 1 lattices; 0 had errors.
-LOG (lattice-to-phone-lattice[5.5.1016]:main():latbin/lattice-to-phone-lattice.cc:94) Done converting 1 lattices.
-LOG (nbest-to-ctm[5.5.1016]:main():latbin/nbest-to-ctm.cc:119) Converted 1 linear lattices to ctm format; 0 had errors.
-/home/caitlinr/.conda/envs/cap4/bin/compute-mfcc-feats --verbose=2 --use-energy=false --frame-shift=10 --frame-length=25 --low-freq=20 --high-freq=7800 --sample-frequency=16000 --allow-downsample=true --allow-upsample=true --snip-edges=false ark:- ark:-
-VLOG[2] (compute-mfcc-feats[5.5.1016]:main():featbin/compute-mfcc-feats.cc:182) Processed features for key 024582-1878155
-LOG (compute-mfcc-feats[5.5.1016]:main():featbin/compute-mfcc-feats.cc:185)  Done 1 out of 1 utterances.
+LOG (apply-cmvn[5.5.1068]:main():featbin/apply-cmvn.cc:162) Applied cepstral mean normalization to 1 utterances, errors on 0
+LOG (gmm-align-compiled[5.5.1068]:main():gmmbin/gmm-align-compiled.cc:127) 024897-1955981
+LOG (gmm-align-compiled[5.5.1068]:main():gmmbin/gmm-align-compiled.cc:135) Overall log-likelihood per frame is -45.7529 over 303 frames.
+LOG (gmm-align-compiled[5.5.1068]:main():gmmbin/gmm-align-compiled.cc:137) Retried 0 out of 1 utterances.
+LOG (gmm-align-compiled[5.5.1068]:main():gmmbin/gmm-align-compiled.cc:139) Done 1, errors on 0
+LOG (transform-feats[5.5.1068]:main():featbin/transform-feats.cc:158) Overall average [pseudo-]logdet is -98.9033 over 303 frames.
+LOG (transform-feats[5.5.1068]:main():featbin/transform-feats.cc:161) Applied transform to 1 utterances; 0 had errors.
+LOG (linear-to-nbest[5.5.1068]:main():latbin/linear-to-nbest.cc:130) Done 1 n-best entries ,0 had errors.
+LOG (lattice-align-words[5.5.1068]:main():latbin/lattice-align-words.cc:126) Successfully aligned 1 lattices; 0 had errors.
+LOG (lattice-to-phone-lattice[5.5.1068]:main():latbin/lattice-to-phone-lattice.cc:94) Done converting 1 lattices.
+LOG (nbest-to-ctm[5.5.1068]:main():latbin/nbest-to-ctm.cc:119) Converted 1 linear lattices to ctm format; 0 had errors.
+/home/caitlinr/.conda/envs/cap23pmodel/bin/compute-mfcc-feats --verbose=2 --use-energy=false --frame-shift=10 --frame-length=25 --low-freq=20 --high-freq=7800 --sample-frequency=16000 --allow-downsample=true --allow-upsample=true --snip-edges=false ark:- ark:-
+VLOG[2] (compute-mfcc-feats[5.5.1068]:main():featbin/compute-mfcc-feats.cc:182) Processed features for key 024897-1955981
+LOG (compute-mfcc-feats[5.5.1068]:main():featbin/compute-mfcc-feats.cc:185)  Done 1 out of 1 utterances.
