@@ -21,7 +21,6 @@ def snorm(s):
     while '  ' in s:
         s = s.replace('  ', ' ')
     return s
-    #return s.lower().translate(str.maketrans('', '', string.punctuation))
 
 
 # convert defaultdicts into regular picklable dicts
@@ -88,14 +87,7 @@ def word_feats_func(normed_text,rec_list,corpus_dir,featurizer):
         
         with open(align_path,'r') as alignment:
             word_aligns = load_word_timestamps(alignment)
-        #assert ' '.join([l for s,e,l in word_aligns]) == normed_text
-        try:
-            assert ' '.join([l for s,e,l in word_aligns]) == normed_text
-        except:
-            print('***********')
-            print('normed text', normed_text)
-            print(' '.join([l for s,e,l in word_aligns ] ))
-            print(word_aligns)
+        assert ' '.join([l for s,e,l in word_aligns]) == normed_text
         
         feats = featurizer(wav_path)
         
@@ -153,9 +145,9 @@ def model_one_task(task_id, task_text, corpus_dir, corpus_meta_file, featurizer,
     cmeta = [l.split('\t') for l in cmeta[1:]]
 
     # get the reference recordings for this task
-    task_recs_meta = [l for l in cmeta if snorm(l[2]) == norm_text]
-    l1_meta = validate([l for l in task_recs_meta if l[5].lower() in ['islenska','icelandic']],corpus_dir)
-    l2_meta = validate([l for l in task_recs_meta if l[5].lower() not in ['islenska','icelandic']],corpus_dir)
+    task_recs_meta = [l for l in cmeta if snorm(l[3]) == norm_text]
+    l1_meta = validate([l for l in task_recs_meta if l[6].lower() in ['islenska','icelandic']],corpus_dir)
+    l2_meta = validate([l for l in task_recs_meta if l[6].lower() not in ['islenska','icelandic']],corpus_dir)
 
     if (len(l1_meta) > 0) and (len(l2_meta) > 0):
         # get w2v2 features for each word in the reference sets and save them
@@ -194,7 +186,7 @@ def main():
     corpus_dir = '/home/caitlinr/work/cc/captini_new/audio_correct_names/'
 
     featurizer_path = '/home/caitlinr/work/models/LVL/wav2vec2-large-xlsr-53-icelandic-ep10-1000h/'
-    layer = 8 # or 7
+    layer = 8 # or try 7
         
     corpus_meta_file = './captini_metadata.tsv'
     task_db = './task-text.txt'
