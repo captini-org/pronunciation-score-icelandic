@@ -12,6 +12,7 @@ class AlignOneFunction():
         exercise_text,
         rec_file_path,
         rec_duration,
+        speaker_id,
         work_dir='./alignment/new/',
         mfa_dir='./alignment/captini_pretrained_aligner/',
         pdict_name='1_CAPTINI',
@@ -30,8 +31,8 @@ class AlignOneFunction():
         self.rec_path = rec_file_path
         self.normalised_text = exercise_text
         self.duration = rec_duration
-        self.long_id = rec_file_path.split('/')[-1].replace('.wav','')
-        
+        #self.long_id = rec_file_path.split('/')[-1].replace('.wav','')
+        self.long_id = str(speaker_id)
         # files already exist:
         self.disambig_path = self.mfa_dir+'dictionary/phones/disambiguation_symbols.int'
         self.word_boundary_int = self.mfa_dir+'dictionary/phones/word_boundary.int'
@@ -68,10 +69,11 @@ class AlignOneFunction():
             f.write('\n')
             f.close()
     
-        wav_scp_contents = self.long_id+' ' +self.rec_path
+        wav_scp_contents = self.long_id+' ' +str(self.rec_path)
         temp_file(self.wav_scp, wav_scp_contents)
         
-        segments_scp_contents = self.long_id + ' ' + self.long_id + ' 0.0 ' + str(round(self.duration,2))
+        #segments_scp_contents = self.long_id + ' ' + self.long_id + ' 0.0 ' + str(round(self.duration,2))
+        segments_scp_contents = self.long_id + ' ' + self.long_id + ' 0.0 ' + str(round(float(self.duration),2))
         temp_file(self.segments_scp, segments_scp_contents)
         
         #! TODO change this for cmvn by speaker
@@ -85,7 +87,8 @@ class AlignOneFunction():
         word_map = [l.split('\t') for l in word_map] 
         word_map = {l[0]:l[1] for l in word_map}
         
-        text_int_contents = self.long_id+' '+' '.join([word_map[word] for word in self.normalised_text.split(' ')])
+        #text_int_contents = self.long_id+' '+' '.join([word_map[word] for word in self.normalised_text.split(' ')])
+        text_int_contents = self.long_id+' '+' '.join([word_map[word] for word in str(self.normalised_text).split(' ')])
         temp_file(self.text_int, text_int_contents)
         
         with open(self.phone_map_path,'r') as handle:
@@ -316,10 +319,15 @@ class AlignOneFunction():
         word_aligns, phone_aligns = self.process_intervals(intervals)
         return word_aligns, phone_aligns
       
-        
-def makeAlign(exercise_text,user_file_path,rec_duration):
-    do_align = AlignOneFunction(exercise_text,user_file_path,rec_duration)
-    return do_align.align()
+# pass speaker_id to the function       
+def makeAlign(exercise_text, user_file_path, rec_duration, speaker_id):
+    try:
+        do_align = AlignOneFunction(exercise_text, user_file_path, rec_duration, speaker_id)
+        return do_align.align()
+    except AlignmentError as e:
+        # TODO: Handle the AlignmentError here and return a predefined result
+        # we can return an empty word_aligns and phone_aligns
+        return [], {}
     
 
 

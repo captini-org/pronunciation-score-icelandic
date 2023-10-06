@@ -53,8 +53,14 @@ class PronunciationScorer():
 
     def task_scorer(self,exercise_id):
         reference_path = f'{self.reference_feat_dir}task_{exercise_id}.pickle'
-        with open(reference_path,'rb') as handle:
-            reference_sets = pickle.load(handle)
+        try:
+            with open(reference_path,'rb') as handle:
+                reference_sets = pickle.load(handle)
+                print(reference_sets['L1'].keys())
+        except FileNotFoundError:
+            # Handle the case where the file is not found by returning empty output
+            print(f"File not found: '{reference_path}'. Returning empty output.")
+            return '', {}
         taskwords = ' '.join([w.split('__')[1] for w in sorted(list(reference_sets['L1'].keys()))])
         return(taskwords, reference_sets)
 
