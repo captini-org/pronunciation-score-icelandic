@@ -12,11 +12,11 @@ import json
 import sys
 import typing
 from typing import Literal, Iterable
-
 import pika
-
 from captiniscore import PronunciationScorer
-from captinialign import AlignOneFunction
+from captinialign import AlignOneFunction, makeAlign
+from captinifeedback import FeedbackConverter
+import librosa
 
 InputTopic = Literal["SYNC_SPEECH_INPUT"]
 OutputTopic = Literal["PRONUNCIATION_SCORE", "PRONUNCIATION_ALIGNMENT"]
@@ -32,11 +32,13 @@ def json_serialize(obj):
 class Consumer:
     def __init__(self, args, callback):
         self._connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=args.rabbitmq_host)
+            #pika.ConnectionParameters(host=args.rabbitmq_host)
+            pika.ConnectionParameters(host='connector_rabbitmq_1',heartbeat=1000)
         )
         self._channel = self._connection.channel()
         self._channel.exchange_declare(
-            exchange=args.rabbitmq_exchange, exchange_type="direct"
+            #exchange=args.rabbitmq_exchange, exchange_type="direct"
+            exchange='captini', exchange_type="direct"
         )
 
         self._result = self._channel.queue_declare("", exclusive=True)
@@ -66,24 +68,70 @@ class Consumer:
 class Producer:
     def __init__(self, args):
         self._connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host=args.rabbitmq_host)
+            #pika.ConnectionParameters(host=args.rabbitmq_host)
+            pika.ConnectionParameters(host='connector_rabbitmq_1',heartbeat=1000)
         )
         self._channel = self._connection.channel()
-        self._exchange = args.rabbitmq_exchange
+        # self._exchange = args.rabbitmq_exchange
+        self._exchange = 'captini'
         self._channel.exchange_declare(exchange=self._exchange, exchange_type="direct")
 
     def publish(self, message: dict, topic: OutputTopic) -> None:
         self._channel.basic_publish(
-            exchange=self._exchange,
-            routing_key=topic,
-            body=json.dumps(message, default=json_serialize),
+            exchange='captini',
+            routing_key='PRONUNCIATION_ALIGNMENT',
+            body=json.dumps(message),
         )
-
+        body=json.dumps(message, default=json_serialize)
     def close(self) -> None:
         self._connection.close()
+def display_as_json(score_output):
+    task_feedback = score_output['task_feedback']
+    word_feedback = score_output['word_feedback']
+    phone_feedback = score_output['phone_feedback']
+    
+    feedback_json = {
+        'task_feedback': task_feedback,
+        'word_feedback': [],
+    }
+    if(task_feedback == 0):
+        word_data = {
+            'word': 'Please record the audio again and ensure it matches the provided text.',
+            'word_score': 0,
+            'phone_feedback': [],
+        }
+        feedback_json['word_feedback'].append(word_data)
+    else:
+        for w_s, p_s in zip(word_feedback, phone_feedback):
+            assert w_s[0] == p_s[0]
+            word_data = {
+                'word': w_s[0],
+                'word_score': w_s[1],
+                'phone_feedback': [],
+            }
+            
+            for i in range(len(p_s[1])):
+                phone_data = {
+                    'phone': p_s[1][i][0],
+                    'phone_score': p_s[1][i][1],
+                }
+                word_data['phone_feedback'].append(phone_data)
+            
+            feedback_json['word_feedback'].append(word_data)
+        
+    # Convert the JSON structure to a string
+    feedback_json_str = json.dumps(feedback_json, indent=4)
+    # Return the JSON structure as a string
+    return feedback_json
 
 
 def main():
+    # Define constants for converting pronunciation scores
+    # to user feedback
+    binary_threshold = -0.005
+    lower_bound_100 = -0.1
+    upper_bound_100 = 0.0
+
     # files provided as examples to use for score demo
     demo_info_file = "./demo_recording_data.tsv"
 
@@ -95,12 +143,12 @@ def main():
     parser.add_argument(
         "--reference-feat-dir",
         type=str,
-        default="./reference-feats_w2v2-base_layer-6/",
+        default="./task_models_w2v2-IS-1000h/",
     )
     parser.add_argument(
         "--speech-featurizer-path",
         type=str,
-        default="facebook/wav2vec2-base",
+        default="carlosdanielhernandezmena/wav2vec2-large-xlsr-53-icelandic-ep10-1000h",
         help="""\
         Speech embedding model and layer must match the pre-computed reference sets.
         This featurizer path loads the model from huggingface, which occasionally has
@@ -109,19 +157,21 @@ def main():
         directory such as './models/facebook/wav2vec2-base'
         """,
     )
-    parser.add_argument("--speech-featurizer-layer", type=int, default=6)
+    parser.add_argument("--speech-featurizer-layer", type=int, default=8)
     parser.add_argument("--rabbitmq-exchange", type=str, default="captini")
-    parser.add_argument("--rabbitmq-host", type=str, default="rabbitmq")
+    parser.add_argument("--rabbitmq-host", type=str, default="connector_rabbitmq_1")
     args = parser.parse_args()
 
+
     scorer = PronunciationScorer(
-        wav_dir=args.wav_dir,
         reference_feat_dir=args.reference_feat_dir,
         model_path=args.speech_featurizer_path,
         model_layer=args.speech_featurizer_layer,
     )
+    # FeedbackConverter new module to process scores into user feedback
+    fb = FeedbackConverter(binary_threshold, lower_bound_100, upper_bound_100)
+    def score_it(args, exercise_text, exercise_id, speaker_id, recording_id, path) -> dict:
 
-    def score_it(args, exercise_text, exercise_id, speaker_id, recording_id) -> dict:
         """Score a single utterance.
 
         Audio file expected to exists at Path(wav_dir, speaker_id, f"{speaker_id}-{rec_id}.wav")
@@ -140,32 +190,46 @@ def main():
         #   and an attempt ID. We ignore that for now.
         rec_id = recording_id
 
-        wav_path = Path(args.wav_dir, speaker_id, f"{speaker_id}-{rec_id}.wav")
+        wav_path = Path("/wavs", path)
         with wave.open(str(wav_path), "r") as wav_f:
             rec_duration = wav_f.getnframes() / wav_f.getframerate()
 
-        aligner = AlignOneFunction(
-            exercise_text,
-            speaker_id,
-            rec_id,
-            str(rec_duration),
-            wav_dir=args.wav_dir,
+
+        word_aligns, phone_aligns = makeAlign(
+        exercise_text,
+        wav_path,
+        rec_duration,
+        speaker_id
         )
-        word_aligns, phone_aligns = aligner.align()
+        if(len(word_aligns)>0):
+            task_text, task_model = scorer.task_scorer(exercise_id)
+            if(task_text!= ''):        
+                word_scores, phone_scores = scorer.score_one(
+                task_model,str(wav_path), word_aligns, phone_aligns
+                )
+                task_feedback, word_feedback, phone_feedback = fb.convert(
+                word_scores,
+                phone_scores)
 
-        word_scores, phone_scores = scorer.score_one(
-            exercise_id, speaker_id, rec_id, word_aligns, phone_aligns
-        )
-
-        return {
-            "word_scores": word_scores,
-            "phone_scores": phone_scores,
-            "word_aligns": word_aligns,
-            "phone_aligns": phone_aligns,
-        }
-
-    producer = Producer(args)
-
+                score_output = {'task_feedback': task_feedback,
+                            'word_feedback': word_feedback, 'phone_feedback': phone_feedback,
+                            'word_scores': word_scores, 'phone_scores': phone_scores,
+                            'word_aligns': word_aligns, 'phone_aligns': phone_aligns}
+            
+            else:
+                score_output = {'task_feedback': 100,
+                            'word_feedback': ['Please record the audio again and ensure it matches the provided text.'], 'phone_feedback':[],
+                            'word_scores': [], 'phone_scores': [],
+                            'word_aligns': [], 'phone_aligns': []}
+        else:
+            score_output = {'task_feedback': 0,
+            'word_feedback': [], 'phone_feedback':[],
+            'word_scores': [], 'phone_scores': [],
+            'word_aligns': [], 'phone_aligns': []}
+        #display(score_output)
+        score_feeback = display_as_json(score_output)
+        return score_feeback
+    publisher = Producer(args)
     def callback(ch, method, properties, body) -> None:
         if method.routing_key == "SYNC_SPEECH_INPUT":
             # TODO(rkjaran): Properly deserialize timestamp and deadline
@@ -186,48 +250,21 @@ def main():
                 exercise_id=text_id,
                 speaker_id=speaker_id,
                 recording_id=recording_id,
+                path=msg["audio_path"],
             )
-
-            ret_pronunciation_score = {
-                "timestamp": datetime.now(),
-                "speaker_id": speaker_id,
-                "session_id": session_id,
-                "text_id": text_id,
-                "score": -1.0,
-                "word_scores": [
-                    {
-                        "word": word,
-                        "score": score,
-                    }
-                    for (word, score) in scores["word_scores"]
-                ],
-            }
-
-            producer.publish(ret_pronunciation_score, "PRONUNCIATION_SCORE")
-
             ret_pronunciation_alignment = {
-                "timestamp": datetime.now(),
                 "speaker_id": speaker_id,
                 "session_id": session_id,
                 "text_id": text_id,
-                "alignment": [
-                    {
-                        "word": score_tup[0],
-                        "phones": [phone for (phone, score) in score_tup[1]],
-                        "phone_scores": [score for (phone, score) in score_tup[1]],
-                    }
-                    for score_tup in scores["phone_scores"]
-                ],
+                "recording_id": recording_id,
+
             }
-
-            producer.publish(ret_pronunciation_alignment, "PRONUNCIATION_ALIGNMENT")
-
+            ret_pronunciation_alignment["score"]= scores
+            publisher.publish(ret_pronunciation_alignment,'PRONUNCIATION_ALIGNMENT')
         else:
             print(" [!] unknown message type: %r:%r" % (method.routing_key, body))
-
     consumer = Consumer(args, callback=callback)
     consumer.start_consuming()
-
 
 if __name__ == "__main__":
     main()
