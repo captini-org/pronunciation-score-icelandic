@@ -1,3 +1,4 @@
+import logging
 import shutil, os, subprocess, typing
 from random import choice
 from collections import defaultdict
@@ -325,6 +326,7 @@ def makeAlign(exercise_text, user_file_path, rec_duration, speaker_id):
         do_align = AlignOneFunction(exercise_text, user_file_path, rec_duration, speaker_id)
         return do_align.align()
     except AlignmentError as e:
+        logging.exception("Alignment failed")
         # TODO: Handle the AlignmentError here and return a predefined result
         # we can return an empty word_aligns and phone_aligns
         return [], {}

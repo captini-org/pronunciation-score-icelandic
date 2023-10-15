@@ -17,6 +17,7 @@ from captiniscore import PronunciationScorer
 from captinialign import AlignOneFunction, makeAlign
 from captinifeedback import FeedbackConverter
 import librosa
+import logging
 
 InputTopic = Literal["SYNC_SPEECH_INPUT"]
 OutputTopic = Literal["PRONUNCIATION_SCORE", "PRONUNCIATION_ALIGNMENT"]
@@ -33,7 +34,7 @@ class Consumer:
     def __init__(self, args, callback):
         self._connection = pika.BlockingConnection(
             #pika.ConnectionParameters(host=args.rabbitmq_host)
-            pika.ConnectionParameters(host='connector_rabbitmq_1',heartbeat=1000)
+            pika.ConnectionParameters(host=args.rabbitmq_host, heartbeat=1000)
         )
         self._channel = self._connection.channel()
         self._channel.exchange_declare(
@@ -68,8 +69,7 @@ class Consumer:
 class Producer:
     def __init__(self, args):
         self._connection = pika.BlockingConnection(
-            #pika.ConnectionParameters(host=args.rabbitmq_host)
-            pika.ConnectionParameters(host='connector_rabbitmq_1',heartbeat=1000)
+            pika.ConnectionParameters(host=args.rabbitmq_host, heartbeat=1000)
         )
         self._channel = self._connection.channel()
         # self._exchange = args.rabbitmq_exchange
@@ -159,8 +159,11 @@ def main():
     )
     parser.add_argument("--speech-featurizer-layer", type=int, default=8)
     parser.add_argument("--rabbitmq-exchange", type=str, default="captini")
-    parser.add_argument("--rabbitmq-host", type=str, default="connector_rabbitmq_1")
+    parser.add_argument("--rabbitmq-host", type=str, default="rabbitmq")
+    parser.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR"], default="DEBUG")
     args = parser.parse_args()
+
+    logging.basicConfig(level=args.log_level)
 
 
     scorer = PronunciationScorer(
@@ -201,6 +204,8 @@ def main():
         rec_duration,
         speaker_id
         )
+        logging.info("word_aligns: %s, phone_aligns: %s", word_aligns, phone_aligns)
+
         if(len(word_aligns)>0):
             task_text, task_model = scorer.task_scorer(exercise_id)
             if(task_text!= ''):        
@@ -235,6 +240,7 @@ def main():
             # TODO(rkjaran): Properly deserialize timestamp and deadline
             # TODO(rkjaran): Parse and honor deadline and timestamp
             msg = json.loads(body)
+            logging.info("Handling message: %s", msg)
             session_id = msg.get("session_id", "UNKNOWN_SESSION")
             text_id = msg["text_id"]
             exercise_text = msg["text"]
@@ -260,6 +266,7 @@ def main():
 
             }
             ret_pronunciation_alignment["score"]= scores
+
             publisher.publish(ret_pronunciation_alignment,'PRONUNCIATION_ALIGNMENT')
         else:
             print(" [!] unknown message type: %r:%r" % (method.routing_key, body))
