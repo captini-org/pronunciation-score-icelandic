@@ -8,9 +8,10 @@ dependencies:
   - pip
   - dtw-python
   - pysoundfile
-  - kaldi
+  - kaldi=5.5.1016
   - transformers
   - pytorch
   - scipy>=1.9.0
+  - librosa
   - pip:
     - pika>=1.3.0
