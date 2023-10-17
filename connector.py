@@ -128,9 +128,9 @@ def display_as_json(score_output):
 def main():
     # Define constants for converting pronunciation scores
     # to user feedback
-    binary_threshold = -0.005
+    binary_threshold = 0.85
     lower_bound_100 = -0.1
-    upper_bound_100 = 0.0
+    upper_bound_100 = 0.95
 
     # files provided as examples to use for score demo
     demo_info_file = "./demo_recording_data.tsv"
