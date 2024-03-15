@@ -1,8 +1,8 @@
 # pronunciation-score-icelandic
-#### Demo: first version of pronunciation score module for Icelandic(194 exercises), temporarily combined with alternate fallback method to handle the other 269 exercises
+#### Demo: first version of pronunciation score module for Icelandic (194 exercises), temporarily combined with alternate fallback method to handle the other 269 exercises
 
-#### Purpose: to illustrate the captini lesson content, user interface, and interactive learning environment. Not purpose: to evaluate pronunciation accuracy. 
-- The fallback system (58% of lesson content) can not be used by real students of Icelandic to practice their pronunciation, and can not be part of any academic submission/publication.
+#### Purpose: to illustrate the CAPTinI lesson content, user interface, and interactive learning environment. Not purpose: to evaluate pronunciation accuracy. 
+- The fallback system (58% of lesson content) can not be used by students of Icelandic to practice their pronunciation, and can not be part of any academic submission/publication.
 
 ## Run
 `python3 ./demo/demo.py` shows examples of the pronunciation scoring system.
