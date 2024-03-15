@@ -128,12 +128,12 @@ def display_as_json(score_output):
 def main():
     # Define constants for converting pronunciation scores
     # to user feedback
-    binary_threshold = 0.85
+    #binary_threshold = 0.85
     lower_bound_100 = -0.1
-    upper_bound_100 = 0.95
+    upper_bound_100 = 0.02
 
     # files provided as examples to use for score demo
-    demo_info_file = "./demo_recording_data.tsv"
+    demo_info_file = "./demo/demo.tsv"
 
     parser = argparse.ArgumentParser(
         description=__doc__,
@@ -143,7 +143,17 @@ def main():
     parser.add_argument(
         "--reference-feat-dir",
         type=str,
-        default="./task_models_w2v2-IS-1000h/",
+        default="./models/task_models_w2v2-IS-1000h_l8_9TXYJP/",
+    )
+    parser.add_argument(
+        "--task-key-path",
+        type=str,
+        default="./models/task_key_9TXYJP.json",
+    )
+    parser.add_argument(
+        "--phone-key-path",
+        type=str,
+        default="./models/phone_key_9TXYJP.tsv",
     )
     parser.add_argument(
         "--speech-featurizer-path",
@@ -172,7 +182,7 @@ def main():
         model_layer=args.speech_featurizer_layer,
     )
     # FeedbackConverter new module to process scores into user feedback
-    fb = FeedbackConverter(binary_threshold, lower_bound_100, upper_bound_100)
+    fb = FeedbackConverter(args.task_key_path, args.phone_key_path, lower_bound_100, upper_bound_100)
     def score_it(args, exercise_text, exercise_id, speaker_id, recording_id, path) -> dict:
 
         """Score a single utterance.
@@ -214,7 +224,8 @@ def main():
                 )
                 task_feedback, word_feedback, phone_feedback = fb.convert(
                 word_scores,
-                phone_scores)
+                phone_scores,
+                exercise_id)
 
                 score_output = {'task_feedback': task_feedback,
                             'word_feedback': word_feedback, 'phone_feedback': phone_feedback,
