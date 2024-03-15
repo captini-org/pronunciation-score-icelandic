@@ -1,7 +1,10 @@
+import sys
+sys.path.append('../pronunciation-score-icelandic')
 from captinialign import makeAlign
 from captiniscore import PronunciationScorer
 from captinifeedback import FeedbackConverter
 import librosa
+from os.path import basename, splitext
 
 
 # score a demo user utterance:
@@ -13,10 +16,13 @@ def run_demo(task_id,user_wav,scorer,fb):
     task_text, task_model = scorer.task_scorer(task_id)
     user_wav_duration = librosa.get_duration(path=user_wav)
 
+    print(task_text)
+
     word_aligns, phone_aligns = makeAlign(
         task_text,
         user_wav,
-        user_wav_duration)
+        user_wav_duration,
+        splitext(basename(user_wav))[0])
         
     word_scores, phone_scores = scorer.score_one(
         task_model,
@@ -26,7 +32,8 @@ def run_demo(task_id,user_wav,scorer,fb):
 
     task_feedback, word_feedback, phone_feedback = fb.convert(
         word_scores,
-        phone_scores)
+        phone_scores,
+        task_id)
 
     score_output = {'task_feedback': task_feedback,
         'word_feedback': word_feedback, 'phone_feedback': phone_feedback,
@@ -60,20 +67,20 @@ def main():
     #   which occasionally has connection problems.
     # For more stable use, download the models from huggingface
     #   and change the path to local directory such as './models/LVL/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
-    speech_featurizer_path = 'carlosdanielhernandezmena/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
+    #speech_featurizer_path = 'carlosdanielhernandezmena/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
+    speech_featurizer_path = '../../../corpora/models/LVL/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
     speech_featurizer_layer = 8
 
     
-    # path to pronunciation references for scoring
-    scoring_models = './task_models_w2v2-IS-1000h/'
-
+    # paths to pronunciation references for scoring
+    task_scoring_models = './models/task_models_w2v2-IS-1000h_l8_9TXYJP/'
     
     # Define constants for converting pronunciation scores
     # to user feedback
-    binary_threshold = -0.005
     lower_bound_100 = -0.1
     upper_bound_100 = 0.0
-
+    task_key_path = "./models/task_key_9TXYJP.json"
+    phone_key_path = "./models/phone_key_9TXYJP.tsv"
     
     # PronunciationScorer takes considerable time to initialise,
     #     due to loading the w2v2 featurizer.
@@ -81,17 +88,17 @@ def main():
     # It's faster on GPU.
     # Do not re-load a new w2v2 featurizer each time a user speaks.
     scorer = PronunciationScorer(
-        scoring_models, 
+        task_scoring_models, 
         speech_featurizer_path, 
         speech_featurizer_layer)
 
-    
+
     # FeedbackConverter new module to process scores into user feedback
-    fb = FeedbackConverter(binary_threshold, lower_bound_100, upper_bound_100)
+    fb = FeedbackConverter(task_key_path, phone_key_path, lower_bound_100, upper_bound_100)
 
     
     # some examples.
-    demo_info_file = 'demo.tsv'
+    demo_info_file = './demo/demo.tsv'
     
     with open(demo_info_file,'r') as example_db:
         example_db = [l.split('\t') for l in example_db.read().splitlines()[1:]]

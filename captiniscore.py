@@ -3,7 +3,7 @@ import soundfile as sf
 from scipy import signal
 from collections import defaultdict
 from dtw import dtw
-import glob, torch, transformers, sys, random, pickle
+import glob, torch, transformers, sys, random, pickle, warnings
 transformers.logging.set_verbosity(transformers.logging.ERROR)
 
 
@@ -11,11 +11,44 @@ class PronunciationScorer():
 
     def __init__(self, reference_feat_dir, model_path, model_layer): 
 
-        self.reference_feat_dir = reference_feat_dir
+        self.task_reference_feat_dir = reference_feat_dir
         self.model_path = model_path
         self.model_layer = model_layer
 
         self.featurize = self.w2v2_featurizer()
+
+        
+        # TODO (ish) pass arguments
+        task_text_path = './models/task2text.txt'
+        monophone_reference_feat_path = './models/monophones/w2v2-IS-1000h_SPLIT3.pickle'
+        limit_per_phone = 300
+        random_seed = 3 #TODO not this, do not give this to users or use in any submission/publication, i'm disowning it
+        
+        try:
+            with open(task_text_path,'r') as handle:
+                task_text = handle.read().splitlines()
+            task_text=[l.split('\t') for l in task_text]
+            self.task_text = {task : normed for task, sentence, normed in task_text}
+            
+            with open(monophone_reference_feat_path,'rb') as handle:
+                monophone_db = pickle.load(handle)
+                
+            if limit_per_phone:
+                for lang, langdict in monophone_db.items():
+                    for phone, exemplars in langdict.items():
+                        random.Random(random_seed).shuffle(exemplars)
+                        monophone_db[lang][phone] = [e for e in exemplars if e.shape[0]>1][:limit_per_phone]
+            self.monophone_db = monophone_db
+
+        except:
+            e_m = f"For the monophones fallback I hardcoded paths to extra file {task_text_path} and {monophone_reference_feat_path}. "
+            e_m += "At least one of them doesn't seem to exist. Edit captiniscore.py, or if you're doing this properly,"
+            e_m += "add the new arguments to captiniscore, connector, demo, and anything that talks to connector?"
+            e_m += "Please download {monophone_reference_feat_path} from "
+            e_m += "https://drive.google.com/file/d/1kPbGDGSAMuyEGdfW5N29fk3pEXjS2n1G/view?usp=share_link first."
+            raise Exception(e_m)
+
+            
         
         # convert seconds (alignment timestamps) to feature frames (w2v2)
         # w2v2 step size is about 20ms, or 50 frames per second
@@ -51,29 +84,35 @@ class PronunciationScorer():
         return _featurizer
 
 
+
+    # return task-specific model if available,
+    # else fallback to monophone models
     def task_scorer(self,exercise_id):
-        reference_path = f'{self.reference_feat_dir}task_{exercise_id}.pickle'
         try:
-            with open(reference_path,'rb') as handle:
-                reference_sets = pickle.load(handle)
-                print(reference_sets['L1'].keys())
-        except FileNotFoundError:
-            # Handle the case where the file is not found by returning empty output
-            print(f"File not found: '{reference_path}'. Returning empty output.")
+            taskwords = self.task_text[exercise_id]
+        except:
+            # Handle the case where task is not found by returning empty output
+            print(f"Unrecognised exercise ID '{exercise_id}', no task text found. Returning empty output.")
             return '', {}
-        taskwords = ' '.join([w.split('__')[1] for w in sorted(list(reference_sets['L1'].keys()))])
-        return(taskwords, reference_sets)
+        try:
+            task_reference_path = f'{self.task_reference_feat_dir}task_{exercise_id}.pickle'
+            with open(task_reference_path,'rb') as handle:
+                reference_sets = pickle.load(handle)
+            reference_info = (reference_sets, 'task')
+        except FileNotFoundError:
+            reference_info = (self.monophone_db, 'phone')
+        return taskwords, reference_info
+
 
     
-    def score_one(self,reference_sets,test_audio_path,word_aligns,phone_aligns):
+    def score_one(self,reference_info,test_audio_path,word_aligns,phone_aligns):
         word_aligns = [(w,self.s2f(s),self.s2f(e)) for w,s,e in word_aligns]
         phone_aligns = {w : [(p,self.s2f(s),self.s2f(e)) for p,s,e in w_ps] 
             for w, w_ps in phone_aligns.items()}
+        
+        reference_sets, scoring_type = reference_info
     
-        #reference_path = f'{self.reference_feat_dir}task_{exercise_id}.pickle'
-        #with open(reference_path,'rb') as handle:
-        #    reference_sets = pickle.load(handle)
-        assert phone_aligns.keys() == reference_sets['L1'].keys()
+        #assert phone_aligns.keys() == reference_sets['L1'].keys() # not valid for fallbacks
                 
         test_feats = self.featurize(test_audio_path)
         test_word_feats = {w:test_feats[s:e] for w,s,e in word_aligns}
@@ -131,7 +170,7 @@ class PronunciationScorer():
                 return (l2-l1)/(l2+l1)
             
             
-        def _compare (comp_set): # call with 'L1' or 'L2' 
+        def _compare_task (comp_set): # call with 'L1' or 'L2' 
         
             word_dtws = { word_id : 
                 dtw_function(
@@ -151,10 +190,37 @@ class PronunciationScorer():
                 in word_aligns }
                 
             return word_avg_costs, phone_avg_costs
-          
+
         
-        l1_w_costs, l1_p_costs = _compare('L1')
-        l2_w_costs, l2_p_costs = _compare('L2')
+        def _compare_monophone (comp_set): # call with 'L1' or 'L2' 
+        
+            phone_dtws = { word_id : 
+                {p_id : dtw_function(
+                    test_word_feats[word_id][s:e],
+                    reference_sets[comp_set][clean(p_id)]) 
+                    for p_id,s,e in phone_aligns[word_id]}
+                for word_id,_,_ in word_aligns}
+
+            with warnings.catch_warnings():
+                warnings.filterwarnings(action='ignore', message='Mean of empty slice') # expected when short phone
+                phone_avg_costs = { word_id : 
+                    {phone_id : np.nanmean([x.normalizedDistance for x in costs if not isinstance(x,float)])
+                        for phone_id,costs in wordphones.items()}
+                    for word_id,wordphones in phone_dtws.items()}
+                                        
+                word_avg_costs = { word_id : np.nanmean([x for x in pcosts.values()]) 
+                    for word_id,pcosts in phone_avg_costs.items() }
+                
+            return word_avg_costs, phone_avg_costs
+
+        
+        if scoring_type.lower() in ['task', 't']:
+            l1_w_costs, l1_p_costs = _compare_task('L1')
+            l2_w_costs, l2_p_costs = _compare_task('L2')
+        else: #fallback
+            l1_w_costs, l1_p_costs = _compare_monophone('L1')
+            l2_w_costs, l2_p_costs = _compare_monophone('L2')
+
         
         final_word_scores = [
             (clean(w_id), prepare_score(l1_w_costs[w_id],l2_w_costs[w_id]))

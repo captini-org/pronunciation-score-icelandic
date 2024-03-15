@@ -1,0 +1,463 @@
+1	a	a
+2	á	á
+3	b	b
+4	d	d
+5	ð	ð
+6	e	e
+7	é	é
+8	f	f
+9	g	g
+10	h	h
+11	i	i
+12	í	í
+13	j	j
+14	k	k
+15	l	l
+16	m	m
+17	n	n
+18	o	o
+19	ó	ó
+20	p	p
+21	r	r
+22	s	s
+23	t	t
+24	u	u
+25	ú	ú
+26	v	v
+27	y	y
+28	ý	ý
+29	x	x
+30	þ	þ
+31	æ	æ
+32	ö	ö
+33	au	au
+34	ei	ei
+35	ey	ey
+36	tala – taska	tala taska
+37	frá – ást	frá ást
+38	lesa – renna	lesa renna
+39	ég – sérðu	ég sérðu
+40	við – fyrir	við fyrir
+41	sími	sími
+42	kona – oft	kona oft
+43	Jóna – óska	jóna óska
+44	gulur – sund	gulur sund
+45	hún – Úlfar	hún úlfar
+46	þau – brauð	þau brauð
+47	já – frá	já frá
+48	Hvaðan ertu?	hvaðan ertu
+49	Ég er frá Þýskalandi.	ég er frá þýskalandi
+50	hvar – taska	hvar taska
+51	mín – íslenska	mín íslenska
+52	þau – austur	þau austur
+53	lesa – lest	lesa lest
+54	koma – komma	koma komma
+55	föt – föst	föt föst
+56	Þetta er taskan mín.	þetta er taskan mín
+57	Er þetta taskan þín?	er þetta taskan þín
+58	Hvar er taskan þín?	hvar er taskan þín
+59	Hún er á borðinu.	hún er á borðinu
+60	Hér er handklæðið mitt.	hér er handklæðið mitt
+61	Hvar er handklæðið þitt?	hvar er handklæðið þitt
+62	Konan býr í Reykjavík.	konan býr í reykjavík
+63	Vinur hennar býr á Akureyri.	vinur hennar býr á akureyri
+64	Reykjavík er höfuðborg Íslands.	reykjavík er höfuðborg íslands
+65	Hún er eina borg landsins.	hún er eina borg landsins
+66	við – með	við með
+67	synda – senda	synda senda
+68	klukkan – umferð	klukkan umferð
+69	tölum – tvö	tölum tvö
+70	for – fór – för	for fór för
+71	fornum – fórnum – förnum	fornum fórnum förnum
+72	heitur – reykja	heitur reykja
+73	heitt – reykt	heitt reykt
+74	Við sendum bréf til Englands.	við sendum bréf til englands
+75	Hvert sendið þið bréf?	hvert sendið þið bréf
+76	Ég tala dönsku og frönsku.	ég tala dönsku og frönsku
+77	Klukkan fjögur er mikil umferð.	klukkan fjögur er mikil umferð
+78	Maðurinn er í ljósum fötum.	maðurinn er í ljósum fötum
+79	Konan heitir Sædís.	konan heitir sædís
+80	Þetta er gömul stytta.	þetta er gömul stytta
+81	Styttan er í Reykjavík.	styttan er í reykjavík
+82	Styttan er af Jóni.	styttan er af jóni
+83	Jón er frægur maður.	jón er frægur maður
+84	Í Reykjavík eru bæði falleg og ljót hús.	í reykjavík eru bæði falleg og ljót hús
+85	Ég fer í heita pottinn.	ég fer í heita pottinn
+86	Ferð þú í kalda pottinn?	ferð þú í kalda pottinn
+87	Þetta hús er hvítt.	þetta hús er hvítt
+88	Ég bý í hvítu húsi.	ég bý í hvítu húsi
+89	Er þetta sími eða spjaldtölva?	er þetta sími eða spjaldtölva
+90	Við ætlum að fara í Nauthólsvík.	við ætlum að fara í nauthólsvík
+91	Munið að taka með handklæði!	munið að taka með handklæði
+92	lest – list – líst	lest list líst
+93	Dísa les mikið.	dísa les mikið
+94	furum – förum	furum förum
+95	undum – öndum	undum öndum
+96	hattur – hættur	hattur hættur
+97	harður – hærður	harður hærður
+98	sett – seytt	sett seytt
+99	herði – heyrði	herði heyrði
+100	Otti – ótti	otti ótti
+101	Otti óttast ekki neitt!	otti óttast ekki neitt
+102	glaðar – glaðir – glaður	glaðar glaðir glaður
+103	kæra – kæri – kæru	kæra kæri kæru
+104	leiti – leyti	leiti leyti
+105	tína – týna	tína týna
+106	minni – mynni	minni mynni
+107	par – plan	par plan
+108	bíó – blað	bíó blað
+109	tala – troða	tala troða
+110	dala – drengur	dala drengur
+111	kjósa – kæra	kjósa kæra
+112	gjósa – gæra	gjósa gæra
+113	kona – kvikmynd	kona kvikmynd
+114	gamall – glaður	gamall glaður
+115	Kæru gestir.	kæru gestir
+116	Velkomnir í bíó.	velkomnir í bíó
+117	Dóri Geir bíður Gunnu.	dóri geir bíður gunnu
+118	Viltu fara í bíó?	viltu fara í bíó
+119	Hvað er klukkan?	hvað er klukkan
+120	Kári talar pólsku.	kári talar pólsku
+121	fyndin – kaffi	fyndin kaffi
+122	veit – skrifa	veit skrifa
+123	þessi – þrír	þessi þrír
+124	þriðji – maður	þriðji maður
+125	safnið – íslenskur	safnið íslenskur
+126	skemmtun – kosta	skemmtun kosta
+127	hjá – já	hjá já
+128	fjögur – vilja	fjögur vilja
+129	sagt – þekkt	sagt þekkt
+130	dagur – auglýsa	dagur auglýsa
+131	Hann heitir Hannes.	hann heitir hannes
+132	Hún heitir Hanna.	hún heitir hanna
+133	Gjörðu svo vel!	gjörðu svo vel
+134	Þetta er spennandi saga.	þetta er spennandi saga
+135	mynd – fimm	mynd fimm
+136	fimmtudagur – samt	fimmtudagur samt
+137	Nói	nói
+138	sunnudagur	sunnudagur
+139	nýta – hnýta	nýta hnýta
+140	sýnd – sýnt	sýnd sýnt
+141	enginn – banki	enginn banki
+142	Hér er enginn banki!	hér er enginn banki
+143	langur – langt	langur langt
+144	Það er langt í bankann!	það er langt í bankann
+145	Myndin verður sýnd á sunnudaginn.	myndin verður sýnd á sunnudaginn
+146	Bankinn er langt í burtu.	bankinn er langt í burtu
+147	Við keyrum fimmtán kílómetra.	við keyrum fimmtán kílómetra
+148	Nonni nennti ekki að fara þangað, það var svo langt í burtu.	nonni nennti ekki að fara þangað það var svo langt í burtu
+149	linur – hlynur	linur hlynur
+150	ljóð – hljóð	ljóð hljóð
+151	sól – mál	sól mál
+152	Allt í lagi!	allt í lagi
+153	rista – hrista	rista hrista
+154	Björg – Björk	björg björk
+155	Hrafnarnir fljúga hátt yfir þorpinu.	hrafnarnir fljúga hátt yfir þorpinu
+156	Þeir eru svartir.	þeir eru svartir
+157	Lína Vilhjálmsdóttir er læknir.	lína vilhjálmsdóttir er læknir
+158	Hún vinnur á Landspítalanum.	hún vinnur á landspítalanum
+159	Viltu hjálpa mér?	viltu hjálpa mér
+160	Já, ekkert mál!	já ekkert mál
+161	Er það Björg eða Björk?	er það björg eða björk
+162	Það er partí hjá Hrafnhildi um helgina.	það er partí hjá hrafnhildi um helgina
+163	Ég sit á kaffihúsi.	ég sit á kaffihúsi
+164	Ég borða köku með rjóma.	ég borða köku með rjóma
+165	Það var mikið mannlíf í borginni.	það var mikið mannlíf í borginni
+166	Hann er fimm árum yngri en hún.	hann er fimm árum yngri en hún
+167	Það væri betra ef íbúðin væri stærri.	það væri betra ef íbúðin væri stærri
+168	Amma semur rokktónlist.	amma semur rokktónlist
+169	Addi lætur sig alltaf hverfa snemma.	addi lætur sig alltaf hverfa snemma
+170	Við erum í Lækjargötu.	við erum í lækjargötu
+171	Stebbi hlóð niður nýju appi.	stebbi hlóð niður nýju appi
+172	Afi kemur í kaffi á morgun.	afi kemur í kaffi á morgun
+173	Ég verð að fara núna!	ég verð að fara núna
+174	Pabbi sá apa í garðinum.	pabbi sá apa í garðinum
+175	Hanna bakar pönnukökur með þeyttum rjóma og jarðarberjasultu.	hanna bakar pönnukökur með þeyttum rjóma og jarðarberjasultu
+176	þangað – banki	þangað banki
+177	fingur – syngja	fingur syngja
+178	lengi – skenkja	lengi skenkja
+179	ungur – hlunkur	ungur hlunkur
+180	söngur – pönk	söngur pönk
+181	Köngulóin söng pönktónlist!	köngulóin söng pönktónlist
+182	Ætlarðu í bankann?	ætlarðu í bankann
+183	Veistu hvað er langt þangað?	veistu hvað er langt þangað
+184	Ég var lengi á leiðinni heim.	ég var lengi á leiðinni heim
+185	Hún bjó í Ungverjalandi þegar hún var ung.	hún bjó í ungverjalandi þegar hún var ung
+186	Sungu söngvararnir vel í gær?	sungu söngvararnir vel í gær
+187	Já, og þeir syngja líka vel í dag.	já og þeir syngja líka vel í dag
+188	Það eru oftast fimm fingur á einni hendi.	það eru oftast fimm fingur á einni hendi
+189	Hinkraðu aðeins og syngdu eitt lag enn.	hinkraðu aðeins og syngdu eitt lag enn
+190	daginn – lagið	daginn lagið
+191	segja – segir	segja segir
+192	stigi – snigill	stigi snigill
+193	flygill – flygildi	flygill flygildi
+194	Bogi býr í Kópavogi.	bogi býr í kópavogi
+195	Huginn er í löngu flugi.	huginn er í löngu flugi
+196	Tröllaskagi er á Norðurlandi.	tröllaskagi er á norðurlandi
+197	Egilsstaðir eru á Austurlandi.	egilsstaðir eru á austurlandi
+198	Heiða segir góðan daginn!	heiða segir góðan daginn
+199	Allt í lagi, segir Egill.	allt í lagi segir egill
+200	Snigillinn skreið yfir spegilinn.	snigillinn skreið yfir spegilinn
+201	Ég keypti nýjan hvítan flygil.	ég keypti nýjan hvítan flygil
+202	Bogi hefur áhuga á tónlist.	bogi hefur áhuga á tónlist
+203	Áhugi Boga liggur í tónlist.	áhugi boga liggur í tónlist
+204	lepja – apríl	lepja apríl
+205	sitja – betra	sitja betra
+206	vökva – Akranes	vökva akranes
+207	Esja – Ísrael	esja ísrael
+208	krækja – Reykjavík	krækja reykjavík
+209	Hann uppgötvaði nýja reikistjörnu!	hann uppgötvaði nýja reikistjörnu
+210	Kisurnar lepja mjólkina.	kisurnar lepja mjólkina
+211	Fuglarnir sitja í trjánum.	fuglarnir sitja í trjánum
+212	Snjóaði mikið í apríl?	snjóaði mikið í apríl
+213	Ég vökvaði blómin á Akranesi.	ég vökvaði blómin á akranesi
+214	Turninn er fimmtíu metra hár.	turninn er fimmtíu metra hár
+215	Ég hef farið upp í hann tvisvar sinnum.	ég hef farið upp í hann tvisvar sinnum
+216	Ég hef farið upp Esjuna mörgum sinnum.	ég hef farið upp esjuna mörgum sinnum
+217	En ég hef aldrei farið til Ísraels.	en ég hef aldrei farið til ísraels
+218	Sjáiði! Þetta er Skógafoss.	sjáiði þetta er skógafoss
+219	Skógafoss er neðsti fossinn í Skógaá.	skógafoss er neðsti fossinn í skógaá
+220	Þessir fossar eru allir mjög fallegir.	þessir fossar eru allir mjög fallegir
+221	Fimmvörðuháls er ofan við Skógafoss.	fimmvörðuháls er ofan við skógafoss
+222	Það er hægt að ganga yfir Fimmvörðuháls.	það er hægt að ganga yfir fimmvörðuháls
+223	Leiðin byrjar við Skógafoss.	leiðin byrjar við skógafoss
+224	Það er falleg leið sem heitir Laugavegur.	það er falleg leið sem heitir laugavegur
+225	Leiðin liggur milli Þórsmerkur og Landmannalauga.	leiðin liggur milli þórsmerkur og landmannalauga
+226	Verslunargatan í Reykjavík heitir líka Laugavegur.	verslunargatan í reykjavík heitir líka laugavegur
+227	Þar eru margar búðir.	þar eru margar búðir
+228	Samkvæmt þjóðsögu er gull í Skógafossi.	samkvæmt þjóðsögu er gull í skógafossi
+229	Engum hefur tekist að finna gullið.	engum hefur tekist að finna gullið
+230	Undir Eyjafjöllum eru margir fossar.	undir eyjafjöllum eru margir fossar
+231	Seljalandsfoss, Skógafoss og Írárfoss.	seljalandsfoss skógafoss og írárfoss
+232	Góðan dag. Velkomin á Listasafn Íslands.	góðan dag velkomin á listasafn íslands
+233	Ég ætla að fá tvo miða.	ég ætla að fá tvo miða
+234	Það eru 400 (fjögur hundruð) krónur.	það eru fjögur hundruð krónur
+235	Gjörðu svo vel.	gjörðu svo vel
+236	Góðan dag. Hvað kostar miðinn?	góðan dag hvað kostar miðinn
+237	Takk fyrir og góða skemmtun.	takk fyrir og góða skemmtun
+238	Hvað má bjóða ykkur?	hvað má bjóða ykkur
+239	Við ætlum að fá tvo latte og eina kökusneið.	við ætlum að fá tvo latte og eina kökusneið
+240	Viljið þið mjólk og sykur?	viljið þið mjólk og sykur
+241	Nei takk.	nei takk
+242	Verði þér að góðu.	verði þér að góðu
+243	Verði ykkur að góðu.	verði ykkur að góðu
+244	Viltu poka?	viltu poka
+245	Já takk, þrjá.	já takk þrjá
+246	upplýsingar – appið	upplýsingar appið
+247	náttúra – þetta	náttúra þetta
+248	takk – þakka	takk þakka
+249	ekki – drykkja	ekki drykkja
+250	epli – vopnið	epli vopnið
+251	skutla – vatnið	skutla vatnið
+252	Hekla – sakna	hekla sakna
+253	Hekla er þekkt íslenskt eldfjall.	hekla er þekkt íslenskt eldfjall
+254	Klöppum fyrir köttum okkar!	klöppum fyrir köttum okkar
+255	Hann talar táknmál.	hann talar táknmál
+256	Atli býr á Vopnafirði.	atli býr á vopnafirði
+257	Bettý býr í blokk.	bettý býr í blokk
+258	Hér eru átta flottar blokkir.	hér eru átta flottar blokkir
+259	Hrekkjavaka er gamall írskur siður.	hrekkjavaka er gamall írskur siður
+260	hjálpa – úlpa	hjálpa úlpa
+261	hollt – kalt	hollt kalt
+262	fólk – mjólk	fólk mjólk
+263	sjónvarp – þorp	sjónvarp þorp
+264	svartur – kort	svartur kort
+265	orka – Björk	orka björk
+266	Í dag er mjög kalt úti.	í dag er mjög kalt úti
+267	Þú verður að fara í svörtu úlpuna.	þú verður að fara í svörtu úlpuna
+268	Viltu mjólk í kaffið?	viltu mjólk í kaffið
+269	Þorpið er ekki svo stórt.	þorpið er ekki svo stórt
+270	Flestir Bandaríkjamenn borða kalkún á þakkargjörðarhátíðinni.	flestir bandaríkjamenn borða kalkún á þakkargjörðarhátíðinni
+271	Björk er fræg íslensk söngkona.	björk er fræg íslensk söngkona
+272	Tónlist Bjarkar finnst mörgum heillandi.	tónlist bjarkar finnst mörgum heillandi
+273	sagt – byggt	sagt byggt
+274	sekt – slökkti	sekt slökkti
+275	september – keypti	september keypti
+276	keppti – sleppt	keppti sleppt
+277	Ég hef ekki sagt það!	ég hef ekki sagt það
+278	Þau hafa byggt stórt hús.	þau hafa byggt stórt hús
+279	Frænka mín fékk hraðasekt á Norðurlandi.	frænka mín fékk hraðasekt á norðurlandi
+280	Ég slökkti á lampanum.	ég slökkti á lampanum
+281	Við keyptum nýjan bíl í september.	við keyptum nýjan bíl í september
+282	Slepptirðu sveppunum?	slepptirðu sveppunum
+283	Við keyptum okkur ferð til Egyptalands.	við keyptum okkur ferð til egyptalands
+284	Það skiptir engu máli!	það skiptir engu máli
+285	hægt – hætt	hægt hætt
+286	Haustfríið er í október.	haustfríið er í október
+287	tefla – Keflavík	tefla keflavík
+288	skafl – afl	skafl afl
+289	Hafnarfjörður – efni	hafnarfjörður efni
+290	nafn – stofn	nafn stofn
+291	regla – lögregla	regla lögregla
+292	hagl – rugl	hagl rugl
+293	rigna – þögn	rigna þögn
+294	skyggni – skyggn	skyggni skyggn
+295	Hann er með frjótt ímyndunarafl.	hann er með frjótt ímyndunarafl
+296	Mér finnst gaman að tefla í Keflavík.	mér finnst gaman að tefla í keflavík
+297	Við ætlum að gera verkefni í Hafnarfirði.	við ætlum að gera verkefni í hafnarfirði
+298	Lögreglan var kölluð út.	lögreglan var kölluð út
+299	Það rignir í logni.	það rignir í logni
+300	Þetta er algjört rugl!	þetta er algjört rugl
+301	perla – snarl	perla snarl
+302	hérna – þarna	hérna þarna
+303	ruslið – kosningar	ruslið kosningar
+304	Snjórinn er sleipur!	snjórinn er sleipur
+305	kalla – bolla	kalla bolla
+306	Hallgrímur elskar rjómabollur.	hallgrímur elskar rjómabollur
+307	einn – seinna	einn seinna
+308	Sýndu mér enn einn!	sýndu mér enn einn
+309	Það vantar einn stól og eitt borð.	það vantar einn stól og eitt borð
+310	Brauð og kornvörur fást í matvörubúðinni.	brauð og kornvörur fást í matvörubúðinni
+311	Frænka mín heitir Erla.	frænka mín heitir erla
+312	Finndu aðra lausn.	finndu aðra lausn
+313	Opnaðu ofninn!	opnaðu ofninn
+314	Barnið vaknaði í vagninum.	barnið vaknaði í vagninum
+315	Heitir hún Hanna?	heitir hún hanna
+316	Ég sé hann!	ég sé hann
+317	Hvað sagðirðu við hana?	hvað sagðirðu við hana
+318	Hvað heitir hún?	hvað heitir hún
+319	Ég sé þig ekki.	ég sé þig ekki
+320	Sérðu það?	sérðu það
+321	Finnst þér gaman að dansa?	finnst þér gaman að dansa
+322	Hvað kostar þetta?	hvað kostar þetta
+323	Eruð þið með stærri stærð?	eruð þið með stærri stærð
+324	Hafið þið talað við þá?	hafið þið talað við þá
+325	Verði þér að góðu.	verði þér að góðu
+326	Gaman að sjá þig.	gaman að sjá þig
+327	Ég ætla að fara þangað á morgun með henni Höllu.	ég ætla að fara þangað á morgun með henni höllu
+328	Tökum því bara rólega.	tökum því bara rólega
+329	Ég ætla að fara heim.	ég ætla að fara heim
+330	Ég borða ekki kjöt.	ég borða ekki kjöt
+331	Kemurðu á morgun?	kemurðu á morgun
+332	Komdu á morgun.	komdu á morgun
+333	Hún borðar ekki á morgnana.	hún borðar ekki á morgnana
+334	Hann ætlar að kaupa allar jólagjafirnar.	hann ætlar að kaupa allar jólagjafirnar
+335	Allir þurfa að fá peninga.	allir þurfa að fá peninga
+336	Hér er líka skemmtilegt að vinna og búa.	hér er líka skemmtilegt að vinna og búa
+337	Fer hún ekki að koma í heimsókn?	fer hún ekki að koma í heimsókn
+338	Verði ykkur að góðu.	verði ykkur að góðu
+339	Segðu honum að koma klukkan sjö.	segðu honum að koma klukkan sjö
+340	Ha! Fannstu þetta inni í eldhúsi?	ha fannstu þetta inni í eldhúsi
+341	Viltu að ég hjálpi þér?	viltu að ég hjálpi þér
+342	Viltu að ég hjálpi honum?	viltu að ég hjálpi honum
+343	margt	margt
+344	íslenskt	íslenskt
+345	morgni	morgni
+346	fylgdi	fylgdi
+347	sigldi	sigldi
+348	fylgt	fylgt
+349	birgðir	birgðir
+350	álft	álft
+351	Kristín borðar danskt rúgbrauð.	kristín borðar danskt rúgbrauð
+352	Hér vinnur margt ungt fólk.	hér vinnur margt ungt fólk
+353	Fólkið vinnur frá morgni til kvölds.	fólkið vinnur frá morgni til kvölds
+354	Ég fylgdi honum heim.	ég fylgdi honum heim
+355	Hefurðu nefnt það við hana?	hefurðu nefnt það við hana
+356	Ég nefndi það við hana um daginn.	ég nefndi það við hana um daginn
+357	Ég horfði á þrjár myndir.	ég horfði á þrjár myndir
+358	Hann býr á Álftanesi.	hann býr á álftanesi
+359	Hún vinnur hjá Íslenskri erfðagreiningu.	hún vinnur hjá íslenskri erfðagreiningu
+360	Það er íslenskt fyrirtæki.	það er íslenskt fyrirtæki
+361	Það eru sjö sjoppur í þorpinu!	það eru sjö sjoppur í þorpinu
+362	Lítil kvísl sindraði í sólinni.	lítil kvísl sindraði í sólinni
+363	Rigndi hjá ykkur í gær?	rigndi hjá ykkur í gær
+364	Við tefldum í fjóra klukkutíma!	við tefldum í fjóra klukkutíma
+365	Ég ætla að fá tvo latte með haframjólk.	ég ætla að fá tvo latte með haframjólk
+366	Til allrar hamingju söng hann vel!	til allrar hamingju söng hann vel
+367	Þessi orðræða er orðin þreytt!	þessi orðræða er orðin þreytt
+368	Viltu sýrðan rjóma með tertunni?	viltu sýrðan rjóma með tertunni
+369	Þau hrjóta svo hátt að það heyrist gegnum tvennar dyr!	þau hrjóta svo hátt að það heyrist gegnum tvennar dyr
+370	Það er ljómandi gott!	það er ljómandi gott
+371	Mér finnst hljóðfræði skemmtileg.	mér finnst hljóðfræði skemmtileg
+372	Það verða umbreytingar í veðrinu.	það verða umbreytingar í veðrinu
+373	Strjúktu yfir skjáinn til að opna.	strjúktu yfir skjáinn til að opna
+374	Við byggðum nýjan sumarbústað.	við byggðum nýjan sumarbústað
+375	Ákveðinn greinir í fleirtölu.	ákveðinn greinir í fleirtölu
+376	Þátíð veikra og sterkra sagna.	þátíð veikra og sterkra sagna
+377	Jónas Hallgrímsson var ljóðskáld.	jónas hallgrímsson var ljóðskáld
+378	Hann var prestssonur og ólst upp á Norðurlandi.	hann var prestssonur og ólst upp á norðurlandi
+379	Jónas bjó bæði á Íslandi og í Danmörku.	jónas bjó bæði á íslandi og í danmörku
+380	Ljóð hans fjalla oft um íslenska náttúru.	ljóð hans fjalla oft um íslenska náttúru
+381	Jónas ferðaðist í nokkur ár um Ísland.	jónas ferðaðist í nokkur ár um ísland
+382	Dragðu setningar á rétta staði.	dragðu setningar á rétta staði
+383	Gætirðu rétt mér saltið?	gætirðu rétt mér saltið
+384	Já, gjörðu svo vel. Viltu pipar líka?	já gjörðu svo vel viltu pipar líka
+385	Skáld er einhver sem yrkir ljóð.	skáld er einhver sem yrkir ljóð
+386	Jónas Hallgrímsson var líka þýðandi.	jónas hallgrímsson var líka þýðandi
+387	Jónas Hallgrímsson bjó til orð.	jónas hallgrímsson bjó til orð
+388	Til dæmis: aðdráttarafl, sjónauki og sporbaugur.	til dæmis aðdráttarafl sjónauki og sporbaugur
+389	kæri – kæra – kæru	kæri kæra kæru
+390	Ég er glaður, þeir eru glaðir, þær eru glaðar.	ég er glaður þeir eru glaðir þær eru glaðar
+391	Hann veiddi fisk en þau veiddu humar.	hann veiddi fisk en þau veiddu humar
+392	Finnst þér gaman að veiða fisk?	finnst þér gaman að veiða fisk
+393	Kæru gestir! Velkomnir til Akureyrar.	kæru gestir velkomnir til akureyrar
+394	Kæra Þóra. Velkomin til Reykjavíkur.	kæra þóra velkomin til reykjavíkur
+395	Ég ætla að vera í Skotlandi í marga daga, jafnvel í margar vikur.	ég ætla að vera í skotlandi í marga daga jafnvel í margar vikur
+396	Okkur vantar marga stóla og margar tölvur.	okkur vantar marga stóla og margar tölvur
+397	Nemendurnir spurðu margra spurninga.	nemendurnir spurðu margra spurninga
+398	Þær bjuggu í París í mörg ár.	þær bjuggu í parís í mörg ár
+399	Ég fer til Parísar í næstu viku.	ég fer til parísar í næstu viku
+400	16. (sextándi) nóvember er dagur íslenskrar tungu.	sextándi nóvember er dagur íslenskrar tungu
+401	Á degi íslenskrar tungu eru margir viðburðir.	á degi íslenskrar tungu eru margir viðburðir
+402	Ég horfði á hann.	ég horfði á hann
+403	Talaðu við hana.	talaðu við hana
+404	Ég heyri ekki í ykkur.	ég heyri ekki í ykkur
+405	Heyriði í mér?	heyriði í mér
+406	Það er ekkert á milli þeirra.	það er ekkert á milli þeirra
+407	Má ég koma með þér?	má ég koma með þér
+408	Viljiði koma með mér?	viljiði koma með mér
+409	Ég var hjá henni í marga daga.	ég var hjá henni í marga daga
+410	Komdu til mín.	komdu til mín
+411	Farðu úr henni.	farðu úr henni
+412	Þú fórst frá mér.	þú fórst frá mér
+413	Hún fór til hans.	hún fór til hans
+414	Hann fór frá honum.	hann fór frá honum
+415	Ég hlustaði á þá.	ég hlustaði á þá
+416	Bróðir minn er íþróttafréttamaður.	bróðir minn er íþróttafréttamaður
+417	Systir mín vinnur í Utanríkisráðuneytinu.	systir mín vinnur í utanríkisráðuneytinu
+418	Hún er forsætisráðherra Íslands.	hún er forsætisráðherra íslands
+419	Loftið er heitt í Vaðlaheiðargöngum.	loftið er heitt í vaðlaheiðargöngum
+420	Þau fóru á nýjan grænmetisveitingastað.	þau fóru á nýjan grænmetisveitingastað
+421	Eyjafjallajökull sést frá Hvolsvelli.	eyjafjallajökull sést frá hvolsvelli
+422	Flúðir eru í Hrunamannahreppi.	flúðir eru í hrunamannahreppi
+423	Raufarhöfn er á Melrakkasléttu.	raufarhöfn er á melrakkasléttu
+424	Við ætlum til Svartfjallalands næsta sumar.	við ætlum til svartfjallalands næsta sumar
+425	Viljiði koma með í ísbíltúr?	viljiði koma með í ísbíltúr
+426	Hann er hugbúnaðarverkfræðingur.	hann er hugbúnaðarverkfræðingur
+427	Ég keypti nýjan snjallsíma í gær.	ég keypti nýjan snjallsíma í gær
+428	Framburðaræfingarnar eru skemmtilegar.	framburðaræfingarnar eru skemmtilegar
+429	Í gær lærði ég nýtt lýsingarorð.	í gær lærði ég nýtt lýsingarorð
+430	Hann fer á morgun.	hann fer á morgun
+431	Penninn er á borðinu.	penninn er á borðinu
+432	Ég fer í fyrramálið.	ég fer í fyrramálið
+433	Hún stundar nám við háskólann.	hún stundar nám við háskólann
+434	Þeir fóru til Edinborgar.	þeir fóru til edinborgar
+435	Ég er að fara til mömmu.	ég er að fara til mömmu
+436	Ég fer úr peysunni.	ég fer úr peysunni
+437	Ása er frá Akureyri.	ása er frá akureyri
+438	Við förum úr skónum.	við förum úr skónum
+439	Síðan förum við aftur í skóna.	síðan förum við aftur í skóna
+440	Ég ætla að fara heim.	ég ætla að fara heim
+441	Viljiði elda kjúkling í kvöld?	viljiði elda kjúkling í kvöld
+442	Við spjölluðum lengi í gærkvöldi.	við spjölluðum lengi í gærkvöldi
+443	Ég ætla að fara þangað á morgun.	ég ætla að fara þangað á morgun
+444	Nú, vissir þú það?	nú vissir þú það
+445	Nei! Það kom mér svolítið á óvart!	nei það kom mér svolítið á óvart
+446	Æi, hættu þessu bara.	æi hættu þessu bara
+447	Ég skil þetta ekki alveg.	ég skil þetta ekki alveg
+448	Já, þetta var nú aðeins betra, ha!	já þetta var nú aðeins betra ha
+449	Ég bara skil ekki hvað er í gangi.	ég bara skil ekki hvað er í gangi
+450	Jæja, þetta er orðið gott. Förum.	jæja þetta er orðið gott förum
+451	Það vissi ég alls ekki.	það vissi ég alls ekki
+452	Góðan og blessaðan daginn, Maggi minn.	góðan og blessaðan daginn maggi minn
+453	Já, við gerum það. Bless.	já við gerum það bless
+454	Hittumst klukkan hálfsjö.	hittumst klukkan hálfsjö
+455	Mig langar að fara til Nýja-Sjálands.	mig langar að fara til nýjasjálands
+456	Mér fannst þetta bara svo ótrúlega spennandi.	mér fannst þetta bara svo ótrúlega spennandi
+457	Bless í bili.	bless í bili
+458	Þýskaland – íslenska – lýsa	þýskaland íslenska lýsa
+459	vinna – synda	vinna synda
+460	ágúst – Lára	ágúst lára
+461	austur – laust	austur laust
+462	lært – ætla	lært ætla
+463	læra – kæra	læra kæra
