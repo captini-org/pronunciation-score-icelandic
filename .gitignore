@@ -2,5 +2,6 @@ samromur-mfa/
 setup/scripts-etc/local/
 setup/pdicts/
 __pycache__/
+models/*/*.pickle
 
 .DS_Store

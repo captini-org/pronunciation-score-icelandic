@@ -20,9 +20,9 @@ class PronunciationScorer():
         
         # TODO (ish) pass arguments
         task_text_path = './models/task2text.txt'
-        monophone_reference_feat_path = './models/monophones/w2v2-IS-1000h_SPLIT3.pickle'
+        monophone_reference_feat_path = './models/monophones/w2v2-IS-30e967h_SPLIT1.pickle'
         limit_per_phone = 300
-        random_seed = 3 #TODO not this, do not give this to users or use in any submission/publication, i'm disowning it
+        random_seed = 3 # no :(
         
         try:
             with open(task_text_path,'r') as handle:
@@ -44,8 +44,8 @@ class PronunciationScorer():
             e_m = f"For the monophones fallback I hardcoded paths to extra file {task_text_path} and {monophone_reference_feat_path}. "
             e_m += "At least one of them doesn't seem to exist. Edit captiniscore.py, or if you're doing this properly,"
             e_m += "add the new arguments to captiniscore, connector, demo, and anything that talks to connector?"
-            e_m += "Please download {monophone_reference_feat_path} from "
-            e_m += "https://drive.google.com/file/d/1kPbGDGSAMuyEGdfW5N29fk3pEXjS2n1G/view?usp=share_link first."
+            e_m += "Please download {monophone_reference_feat_path} from google drive "
+            e_m += "as linked in the readme first."
             raise Exception(e_m)
 
             

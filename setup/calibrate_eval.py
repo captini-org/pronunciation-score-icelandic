@@ -60,7 +60,7 @@ def ref_dev_test_splits(task_models_dir, split_save_path, n_L1 = 20, m_L2 = 10):
     def _task_spks(task_dict):
         spks = []
         for w,ws in task_dict.items():
-            spks += list(ws.keys())
+            spks += [k[:6] for k in list(ws.keys())]
         return list(set(spks))
 
     # 3 way split of speakerlist for cross validation
@@ -114,6 +114,7 @@ def ref_dev_test_splits(task_models_dir, split_save_path, n_L1 = 20, m_L2 = 10):
         if (len(l1_spk) >= n_L1) and (len(l2_spk) >= m_L2):
             task_id = _t_id(model_path)
             splits_dict[task_id] = {"L1": _final_split_L1(l1_spk), "L2": _final_split_L2(l2_spk)}
+            #splits_dict[task_id] = {"L1": _calibration_split_L1(l1_spk), "L2": _calibration_split_L2(l2_spk)}
 
     with open(split_save_path,'w') as handle:
         json.dump(splits_dict,handle)
@@ -178,9 +179,9 @@ def run_task_set(lang,split,split_key,feats_path,corpus_meta,corpus_dir,new_feat
 
     if new_feats_path:
 
-        new_refset = {"L1": {word : {sk: feats for sk, feats in sfeats.items() if sk in l1_ref_spks} \
+        new_refset = {"L1": {word : {rc: feats for rc, feats in sfeats.items() if rc[:6] in l1_ref_spks} \
             for word, sfeats in feats['L1'].items()}, \
-            "L2": {word : {sk: feats for sk, feats in sfeats.items() if sk in l2_ref_spks} \
+            "L2": {word : {rc: feats for rc, feats in sfeats.items() if rc[:6] in l2_ref_spks} \
             for word, sfeats in feats['L2'].items()}}
             
         with open(new_feats_path,'wb') as handle:
@@ -191,7 +192,7 @@ def run_task_set(lang,split,split_key,feats_path,corpus_meta,corpus_dir,new_feat
     tasktext =  snorm(' '.join([w.split('__')[1] for w in taskwords]))
 
     test_meta = [l for l in corpus_meta if snorm(l[3]) == tasktext and l[1] in test_spks]
-    assert len(test_meta) == len(test_spks)
+    assert len(test_meta) >= len(test_spks) # now allowing multi recordings from same speaker
 
     
     pscores = []
@@ -200,19 +201,20 @@ def run_task_set(lang,split,split_key,feats_path,corpus_meta,corpus_dir,new_feat
 
     for test_rec in test_meta:
         test_spk = test_rec[1]
-        aln_path = f'{corpus_dir}{test_spk}/{test_spk}-{test_rec[0]}.json'
+        test_rid = f'{test_spk}-{test_rec[0]}'
+        aln_path = f'{corpus_dir}{test_spk}/{test_rid}.json'
 
         with open(aln_path,'r') as handle:
             phone_aligns = load_timestamps(handle)
 
         l1_word_dtws = { wd :
-            dtw_function(feats[lang][wd][test_spk],[v for k,v in feats['L1'][wd].items() if k in l1_ref_spks])
+            dtw_function(feats[lang][wd][test_rid],[v for k,v in feats['L1'][wd].items() if k[:6] in l1_ref_spks])
                 for wd in taskwords }
         l1_word_avgs = {wd: get_word_avg(l1_word_dtws[wd]) for wd in taskwords}
         l1_phone_avgs = {wd : get_phone_avg(l1_word_dtws[wd], phone_aligns[wd]) for wd in taskwords}
 
         l2_word_dtws = { wd :
-            dtw_function(feats[lang][wd][test_spk],[v for k,v in feats['L2'][wd].items() if k in l2_ref_spks])
+            dtw_function(feats[lang][wd][test_rid],[v for k,v in feats['L2'][wd].items() if k[:6] in l2_ref_spks])
                 for wd in taskwords }
         l2_word_avgs = {wd: get_word_avg(l2_word_dtws[wd]) for wd in taskwords}
         l2_phone_avgs = {wd : get_phone_avg(l2_word_dtws[wd], phone_aligns[wd]) for wd in taskwords}
@@ -303,15 +305,19 @@ def calibrate_task(l1dev,l1test,l2test,key_save_path,log_path):
 
 
 def task_dtw_corpus(eval_run):
-    initial_task_models_dir = './setup/task_models_w2v2-IS-1000h/'
+    initial_task_models_dir = './setup/task_models_w2v2-IS-30e967h/'
         
     split_save_path = f'./setup/split_{eval_run}.json'
-    tasks_splits = ref_dev_test_splits(initial_task_models_dir,split_save_path)
+
+    #test:
+    tasks_splits = ref_dev_test_splits(initial_task_models_dir,split_save_path, n_L1 = 25, m_L2 = 15)
+    #max data no test:
+    #tasks_splits = ref_dev_test_splits(initial_task_models_dir,split_save_path)
 
     with open(split_save_path,'r') as handle:
         tasks_splits = json.load(handle)
         
-    corpus_dir = '/Users/cati/corpora/captisr/audio_correct_names/'
+    corpus_dir = '/Users/cati/corpora/captiniM14/audio/'
     corpus_meta_file = './setup/captini_metadata.tsv'
     with open(corpus_meta_file,'r') as handle:
         corpus_meta = handle.read().splitlines()
@@ -319,7 +325,7 @@ def task_dtw_corpus(eval_run):
 
 
     print('BUILDING TASK DEV + TEST DATA...')
-    new_task_models_dir = f'./models/task_models_w2v2-IS-1000h_l8_{eval_run}/'
+    new_task_models_dir = f'./models/task_models_w2v2-IS-30e967h_l8_{eval_run}/'
     os.mkdir(new_task_models_dir)
     # DEV/EVAL.
     l1_dev = {"P" : {}, "W" : {}, "S": {}}
@@ -464,15 +470,15 @@ def mono_eval_task(speech,files,monophones,thresholds,lang,split):
             return (l2-l1)/(l2+l1)
             
     for word in words:
-        for spk in speech[lang][word]:
-            if int(spk[-1]) in split:
-                with open(files[spk],'r') as alignment:
+        for rc in speech[lang][word]:
+            if int(rc[:6][-1]) in split:
+                with open(files[rc],'r') as alignment:
                     aligns = load_timestamps(alignment,counted=False)[word]
                 wpbins = []
                 wpscores = []
                 for s,e,phone in aligns:
                     bscore = None
-                    test_token = speech[lang][word][spk][s:e]
+                    test_token = speech[lang][word][rc][s:e]
                     dl1, dl2 = mdtw(test_token,monophones['L1'][phone]), mdtw(test_token,monophones['L2'][phone])
                     pscore = prepare_score(dl1,dl2)
                     if pscore == "SHORT":
@@ -513,7 +519,7 @@ def monophone_test(ref_path,key_path,test_split,testable_tasks,corpus_dir,cmeta)
             task_speech = pickle.load(handle)
         task_words = ' '.join([w.split('__')[1] for w in sorted(list(task_speech['L1'].keys()))])
         norm_text = snorm(task_words)
-        task_recs_meta = {l[1]:f'{corpus_dir}{l[1]}/{l[2][:-3]}json' for l in cmeta if snorm(l[3]) == norm_text}
+        task_recs_meta = {f'{l[1]}-{l[0]}':f'{corpus_dir}{l[1]}/{l[2][:-3]}json' for l in cmeta if snorm(l[3]) == norm_text}
         l1_pb, l1_wb, l1_wr = mono_eval_task(task_speech,task_recs_meta,ref_models,score_key,'L1',test_split)
         l2_pb, l2_wb, l2_wr = mono_eval_task(task_speech,task_recs_meta,ref_models,score_key,'L2',test_split)
         
@@ -533,22 +539,24 @@ def monophone_test(ref_path,key_path,test_split,testable_tasks,corpus_dir,cmeta)
     
         
 def monophone_calibrate(eval_run):
-    mono_ref_path = './models/monophones/w2v2-IS-1000h_SPLIT3.pickle'
-    mono_dev_path = './models/monophones/w2v2-IS-1000h_SPLIT9.pickle'
-    mono_test_path = './models/monophones/w2v2-IS-1000h_SPLIT6.pickle'
-    sentence_feats_dir = './setup/task_models_w2v2-IS-1000h/'
+    mono_ref_path = './models/monophones/w2v2-IS-30e967h_SPLIT1.pickle'
+    mono_dev_path = './models/monophones/w2v2-IS-30e967h_SPLIT2.pickle'
+    mono_test_path = './models/monophones/w2v2-IS-30e967h_SPLIT0.pickle'
+    sentence_feats_dir = './setup/task_models_w2v2-IS-30e967h/'
     tmp_dir = './setup/'
+    
+    splits_keys = {'0': [0, 4, 6, 9], '1': [1,5,7], '2':[2,3,8]}
     
     dev_dtws_path=mono_corpus_dtws(mono_ref_path,mono_dev_path,mono_test_path,sentence_feats_dir,tmp_dir, eval_run)
     
-    corpus_dir = '/Users/cati/corpora/captisr/audio_correct_names/'
+    corpus_dir = '/Users/cati/corpora/captiniM14/audio/'
     corpus_meta_file = './setup/captini_metadata.tsv'
     with open(corpus_meta_file,'r') as handle:
         corpus_meta = handle.read().splitlines()
     corpus_meta = [l.split('\t') for l in corpus_meta[1:]]
 
     # must match test set above
-    test_split = list(range(7,10))
+    test_split = splits_keys[mono_test_path.split('_SPLIT')[1].split('.pickle')[0]]#list(range(7,10))
 
     key_save_path = f'./models/phone_key_{eval_run}.tsv'
 
@@ -563,5 +571,6 @@ def process():
     calibrate_eval_task(eval_run)
     monophone_calibrate(eval_run)
 
-process()
+if __name__ == "__main__":
+    process()
 

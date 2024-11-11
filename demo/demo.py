@@ -66,21 +66,21 @@ def main():
     # This featurizer path loads the model from huggingface, 
     #   which occasionally has connection problems.
     # For more stable use, download the models from huggingface
-    #   and change the path to local directory such as './models/LVL/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
-    #speech_featurizer_path = 'carlosdanielhernandezmena/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
-    speech_featurizer_path = '../../../corpora/models/LVL/wav2vec2-large-xlsr-53-icelandic-ep10-1000h'
+    #   and change the path to local directory such as './models/LVL/wav2vec2-large-xlsr-53-icelandic-ep30-967h'
+    #speech_featurizer_path = 'language-and-voice-lab/wav2vec2-large-xlsr-53-icelandic-ep30-967h'
+    speech_featurizer_path = '../../../../corpora/models/LVL/wav2vec2-large-xlsr-53-icelandic-ep30-967h'
     speech_featurizer_layer = 8
 
     
     # paths to pronunciation references for scoring
-    task_scoring_models = './models/task_models_w2v2-IS-1000h_l8_9TXYJP/'
+    task_scoring_models = './models/task_models_w2v2-IS-30e967h_l8_3EP49G/'
     
     # Define constants for converting pronunciation scores
     # to user feedback
     lower_bound_100 = -0.1
-    upper_bound_100 = 0.0
-    task_key_path = "./models/task_key_9TXYJP.json"
-    phone_key_path = "./models/phone_key_9TXYJP.tsv"
+    upper_bound_100 = 0.03 #0.02
+    task_key_path = "./models/task_key_3EP49G.json"
+    phone_key_path = "./models/phone_key_3EP49G.tsv"
     
     # PronunciationScorer takes considerable time to initialise,
     #     due to loading the w2v2 featurizer.

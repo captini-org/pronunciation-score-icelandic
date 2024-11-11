@@ -143,26 +143,26 @@ def main():
     parser.add_argument(
         "--reference-feat-dir",
         type=str,
-        default="./models/task_models_w2v2-IS-1000h_l8_9TXYJP/",
+        default="./models/task_models_w2v2-IS-30e967h_l8_3EP49G/",
     )
     parser.add_argument(
         "--task-key-path",
         type=str,
-        default="./models/task_key_9TXYJP.json",
+        default="./models/task_key_3EP49G.json",
     )
     parser.add_argument(
         "--phone-key-path",
         type=str,
-        default="./models/phone_key_9TXYJP.tsv",
+        default="./models/phone_key_3EP49G.tsv",
     )
     parser.add_argument(
         "--speech-featurizer-path",
         type=str,
-        default="carlosdanielhernandezmena/wav2vec2-large-xlsr-53-icelandic-ep10-1000h",
+        default="language-and-voice-lab/wav2vec2-large-xlsr-53-icelandic-ep30-967h",
         help="""\
         Speech embedding model and layer must match the pre-computed reference sets.
         This featurizer path loads the model from huggingface, which occasionally has
-        connection problems.  For more stable use, download the models from
+        connection problems.  For more stable use, download the models from e.g.
         https://huggingface.co/facebook/wav2vec2-base and change the path to local
         directory such as './models/facebook/wav2vec2-base'
         """,

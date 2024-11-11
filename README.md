@@ -1,15 +1,17 @@
 # pronunciation-score-icelandic
-#### Demo: first version of pronunciation score module for Icelandic (194 exercises), temporarily combined with alternate fallback method to handle the other 269 exercises
+#### Demo: partial first version of pronunciation score module for Icelandic, combined with alternate fallback method to handle the remaining exercises.
 
-#### Purpose: to illustrate the CAPTinI lesson content, user interface, and interactive learning environment. Not purpose: to evaluate pronunciation accuracy. 
-- The fallback system (58% of lesson content) can not be used by students of Icelandic to practice their pronunciation, and can not be part of any academic submission/publication.
+#### Purpose: to illustrate the CAPTinI lesson content, user interface, and interactive learningenvironment. Not purpose: to evaluate pronunciation accuracy. 
+- The fallback system can not be used by students of Icelandic to practice their pronunciation, and can not be part of any academic submission/publication.
 
 ## Run
+First, replace the empty `models` directories from
+[this Huggingface dataset](https://huggingface.co/datasets/clr/captini-scoring-references/tree/main). Monophones SPLIT0 and SPLIT2 are
+not used, and can be skipped.
+
 `python3 ./demo/demo.py` shows examples of the pronunciation scoring system.
 
-First, download [this file](https://drive.google.com/file/d/1kPbGDGSAMuyEGdfW5N29fk3pEXjS2n1G/view?usp=share_link) to replace `models/monophones/w2v2-IS-1000h_SPLIT3.pickle.PLACEHOLDER.txt`
-
-For problems (or to suggest more permanent file storage), please contact caitlinr@ru.is
+For problems, please contact caitlinr@ru.is
 
 ## Install
 
@@ -100,7 +102,7 @@ models and fallback monophone models with the function model\_all\_tasks in `set
   different corpus split function in ref\_dev\_test\_splits().
 - Speech embeddings of these scoring models must match speech
   embeddings at runtime, including the model layer specification. A reasonable place to start is [this wav2vec2
-  Icelandic model](https://huggingface.co/carlosdanielhernandezmena/wav2vec2-large-xlsr-53-icelandic-ep10-1000h)
+  Icelandic model](https://huggingface.co/language-and-voice-lab/wav2vec2-large-xlsr-53-icelandic-ep30-967h)
   layer 8, but the layer should be selected by evaluating performance
   for all intermediate model layers.
 

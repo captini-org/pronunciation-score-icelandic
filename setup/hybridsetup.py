@@ -83,14 +83,14 @@ def validate(rec_list,corpus_dir):
 # get recordings that have valid speech features already
 def revalidate(rec_list,feats_dict):
     validated = []
-    spks = []
+    recs = []
 
     for w,ws in feats_dict.items():
-        spks += list(ws.keys())
-    spks = set(spks)
+        recs += list(ws.keys())
+    recs = set(recs)
 
     for rec in rec_list:
-        if rec[1] in spks:
+        if f'{rec[1]}-{rec[0]}' in recs:
             validated.append(rec)
     return validated
 
@@ -181,6 +181,7 @@ def word_feats_func(normed_text,rec_list,corpus_dir,featurizer):
     for rec in rec_list:
         wav_path, align_path, _ = rec_info(rec,corpus_dir)
         spk = rec[1]
+        rid = rec[0]
         
         with open(align_path,'r') as alignment:
             word_aligns, _ = load_timestamps(alignment)
@@ -192,9 +193,9 @@ def word_feats_func(normed_text,rec_list,corpus_dir,featurizer):
             assert task_words[i][5:] == word_aligns[i][2]
             wordfeats = feats[word_aligns[i][0]:word_aligns[i][1]]
             assert wordfeats.shape[0] > 0
-            words_dict[task_words[i]][spk] = wordfeats
+            words_dict[task_words[i]][f'{spk}-{rid}'] = wordfeats
     
-    # words_dict is a dict of { Word : { Speaker1 : Feat, Sp2 : Feat }, Word2 : {S1 : F, S2: F}, }           
+    # words_dict is a dict of { Word : { RecID1 : Feat, Rec2 : Feat }, Word2 : {R1 : F, R2: F}, }           
     return d2d(words_dict)
 
 
@@ -218,7 +219,7 @@ def add_task_phones(normed_text, rec_list, corpus_dir, task_feats, lang, speaker
 
         for i in range(len(phone_aligns)):
             assert task_words[i][5:] == phone_aligns[i][0]
-            word_feats = task_feats[lang][task_words[i]][spk]
+            word_feats = task_feats[lang][task_words[i]][f'{spk}-{fid}']
             word_phone_aligns = phone_aligns[i][1]
 
             for s,e,p in word_phone_aligns:
@@ -247,15 +248,16 @@ def model_one_task(task_id, task_text, corpus_dir, corpus_meta_file, featurizer,
     l2_meta = validate([l for l in task_recs_meta if l[6].lower() not in ['islenska','icelandic']],corpus_dir)
 
     if (len(l1_meta) > 0) and (len(l2_meta) > 0):
-        # get w2v2 features for each word in the reference sets and save them
-        reference_feats = {'L1': word_feats_func(norm_text,l1_meta,corpus_dir,featurizer),\
-                               'L2': word_feats_func(norm_text,l2_meta,corpus_dir,featurizer)}
         pmodel_file_path = f'{save_dir}task_{task_id}.pickle'
-        with open(pmodel_file_path, 'wb') as handle:
-            handle.write(pickle.dumps(reference_feats))
-        # example: f = open('scoring_models/task_####','r')
-        # x = json.load(f)
-        # list of different speakers feature-blocks for a word: x['L2']['002__langt'].values()
+        if not exists(pmodel_file_path):
+            # get w2v2 features for each word in the reference sets and save them
+            reference_feats = {'L1': word_feats_func(norm_text,l1_meta,corpus_dir,featurizer),\
+                                'L2': word_feats_func(norm_text,l2_meta,corpus_dir,featurizer)}
+            with open(pmodel_file_path, 'wb') as handle:
+                handle.write(pickle.dumps(reference_feats))
+            # example: f = open('scoring_models/task_####','r')
+            # x = json.load(f)
+            # list of different speakers feature-blocks for a word: x['L2']['002__langt'].values()
 
     task_status = ''
     if (len(l1_meta) >= 20) and (len(l2_meta) >= 20):
@@ -345,27 +347,28 @@ def model_all_monophones(task_list, corpus_dir, corpus_meta_file, old_feats_dir,
 
 def main():
 
-    corpus_meta_file = '/Users/cati/corpora/captisr/filtered_capti_metadata.tsv'
-    corpus_dir = '/Users/cati/corpora/captisr/audio_correct_names/'
+    corpus_meta_file = '/Users/cati/corpora/captiniM14/metadata.tsv'
+    corpus_dir = '/Users/cati/corpora/captiniM14/audio/'
     
     #align_corpus(corpus_meta_file, corpus_dir)
     
-    featurizer_path = '/Users/cati/corpora/models/LVL/wav2vec2-large-xlsr-53-icelandic-ep10-1000h/'
+    featurizer_path = '/Users/cati/corpora/models/LVL/wav2vec2-large-xlsr-53-icelandic-ep30-967h/'
     layer = 8
     validated_meta_file = './setup/captini_metadata.tsv'
     task_db = './setup/task-text.txt'
-    task_save_dir = './setup/task_models_w2v2-IS-1000h/'
+    task_save_dir = './setup/task_models_w2v2-IS-30e967h/'
 
     #model_all_tasks(task_db, corpus_dir, corpus_meta_file, featurizer_path, layer, task_save_dir, validated_meta_file)
 
     
     #speaker_split = list(range(0,10)) # all speakers
-    speaker_split = list(range(0,4)) # can split by final digit.
-    # most even 3 way split is 0123 456 789.
-    monophone_save_path = './models/monophones/w2v2-IS-1000h_SPLIT3.pickle'
+    #speaker_split = list(range(0,4)) # can split by final digit.
+    # most even 3 way range split is 0123 456 789
+    # or, 0469 157 238.
+    speaker_split = [0,4,6,9]
+    monophone_save_path = './models/monophones/w2v2-IS-30e967h_SPLIT0.pickle'
 
-
-    model_all_monophones(task_db, corpus_dir, validated_meta_file, task_save_dir, monophone_save_path, speaker_split)
+    #model_all_monophones(task_db, corpus_dir, validated_meta_file, task_save_dir, monophone_save_path, speaker_split)
 
     
 
