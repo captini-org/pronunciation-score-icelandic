@@ -1,15 +1,15 @@
 # pronunciation-score-icelandic
 #### Demo: partial first version of pronunciation score module for Icelandic, combined with alternate fallback method to handle the remaining exercises.
 
-#### Purpose: to illustrate the CAPTinI lesson content, user interface, and interactive learningenvironment. Not purpose: to evaluate pronunciation accuracy. 
-- The fallback system can not be used by students of Icelandic to practice their pronunciation, and can not be part of any academic submission/publication.
+#### Purpose: to illustrate the CAPTinI lesson content, user interface, and interactive learningenvironment. Not current purpose: to accurately judge pronunciation accuracy. 
+- The fallback system has not been validated to train students of Icelandic to practice their pronunciation.
 
 ## Run
 First, replace the empty `models` directories from
 [this Huggingface dataset](https://huggingface.co/datasets/clr/captini-scoring-references/tree/main). Monophones SPLIT0 and SPLIT2 are
 not used, and can be skipped.
 
-`python3 ./demo/demo.py` shows examples of the pronunciation scoring system.
+`python3 ./demo/demo.py` shows examples of the pronunciation scoring system, or check out [this experimental Huggingface space](https://huggingface.co/spaces/clr/captini-scorer-tryout/)
 
 For problems, please contact caitlinr@ru.is
 

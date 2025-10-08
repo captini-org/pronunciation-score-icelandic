@@ -9,28 +9,26 @@ transformers.logging.set_verbosity(transformers.logging.ERROR)
 
 class PronunciationScorer():
 
-    def __init__(self, reference_feat_dir, model_path, model_layer): 
+    def __init__(self, reference_feat_dir, model_path, model_layer, task_text_path, monophone_reference_feat_path): 
 
         self.task_reference_feat_dir = reference_feat_dir
         self.model_path = model_path
         self.model_layer = model_layer
+        self.task_text_path = task_text_path
+        self.monophone_reference_feat_path = monophone_reference_feat_path
 
         self.featurize = self.w2v2_featurizer()
 
-        
-        # TODO (ish) pass arguments
-        task_text_path = './models/task2text.txt'
-        monophone_reference_feat_path = './models/monophones/w2v2-IS-30e967h_SPLIT1.pickle'
         limit_per_phone = 300
         random_seed = 3 # no :(
         
         try:
-            with open(task_text_path,'r') as handle:
+            with open(self.task_text_path,'r') as handle:
                 task_text = handle.read().splitlines()
             task_text=[l.split('\t') for l in task_text]
             self.task_text = {task : normed for task, sentence, normed in task_text}
             
-            with open(monophone_reference_feat_path,'rb') as handle:
+            with open(self.monophone_reference_feat_path,'rb') as handle:
                 monophone_db = pickle.load(handle)
                 
             if limit_per_phone:
@@ -41,11 +39,12 @@ class PronunciationScorer():
             self.monophone_db = monophone_db
 
         except:
-            e_m = f"For the monophones fallback I hardcoded paths to extra file {task_text_path} and {monophone_reference_feat_path}. "
-            e_m += "At least one of them doesn't seem to exist. Edit captiniscore.py, or if you're doing this properly,"
-            e_m += "add the new arguments to captiniscore, connector, demo, and anything that talks to connector?"
-            e_m += "Please download {monophone_reference_feat_path} from google drive "
-            e_m += "as linked in the readme first."
+            e_m = f"There was a problem loading the exercise scoring models or monophones models. "
+            e_m += "Possibly the model files were not found. "
+            e_m += "Check if there is a problem with the arguments provided to "
+            e_m += "captiniscore, connector, demo, and anything that talks to connector? "
+            e_m += "Please obtain the data files from huggingface: "
+            e_m += "https://huggingface.co/datasets/clr/captini-scoring-references"
             raise Exception(e_m)
 
             

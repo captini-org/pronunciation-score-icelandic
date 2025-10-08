@@ -74,7 +74,9 @@ def main():
     
     # paths to pronunciation references for scoring
     task_scoring_models = './models/task_models_w2v2-IS-30e967h_l8_3EP49G/'
-    
+    task_text_path = './models/task2text.txt'
+    monophone_reference_feat_path = './models/monophones/w2v2-IS-30e967h_SPLIT1.pickle'
+
     # Define constants for converting pronunciation scores
     # to user feedback
     lower_bound_100 = -0.1
@@ -90,7 +92,9 @@ def main():
     scorer = PronunciationScorer(
         task_scoring_models, 
         speech_featurizer_path, 
-        speech_featurizer_layer)
+        speech_featurizer_layer,
+        task_text_path,
+        monophone_reference_feat_path)
 
 
     # FeedbackConverter new module to process scores into user feedback

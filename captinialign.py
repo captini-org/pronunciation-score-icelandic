@@ -14,8 +14,8 @@ class AlignOneFunction():
         rec_file_path,
         rec_duration,
         speaker_id,
-        work_dir='./alignment/new/',
-        mfa_dir='./alignment/captini_pretrained_aligner/',
+        work_dir,
+        mfa_dir,
         pdict_name='1_CAPTINI',
     ):
         self.work = work_dir
@@ -321,9 +321,12 @@ class AlignOneFunction():
         return word_aligns, phone_aligns
       
 # pass speaker_id to the function       
-def makeAlign(exercise_text, user_file_path, rec_duration, speaker_id):
+def makeAlign(exercise_text, user_file_path, rec_duration, speaker_id,
+                  work_dir='./alignment/new/',
+                  mfa_dir='./alignment/captini_pretrained_aligner/'):
     try:
-        do_align = AlignOneFunction(exercise_text, user_file_path, rec_duration, speaker_id)
+        do_align = AlignOneFunction(exercise_text, user_file_path, rec_duration,
+                                        speaker_id, work_dir, mfa_dir)
         return do_align.align()
     except AlignmentError as e:
         logging.exception("Alignment failed")

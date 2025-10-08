@@ -168,6 +168,11 @@ def main():
         """,
     )
     parser.add_argument("--speech-featurizer-layer", type=int, default=8)
+    parser.add_argument("--task-text-path", type=str, default='./models/task2text.txt')
+    parser.add_argument(
+        "--monophone-reference-feat-path",
+        type=str,
+        default='./models/monophones/w2v2-IS-30e967h_SPLIT1.pickle')
     parser.add_argument("--rabbitmq-exchange", type=str, default="captini")
     parser.add_argument("--rabbitmq-host", type=str, default="rabbitmq")
     parser.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR"], default="DEBUG")
@@ -180,6 +185,8 @@ def main():
         reference_feat_dir=args.reference_feat_dir,
         model_path=args.speech_featurizer_path,
         model_layer=args.speech_featurizer_layer,
+        task_text_path=args.task_text_path,
+        monophone_reference_feat_path=args.monophone_reference_feat_path,
     )
     # FeedbackConverter new module to process scores into user feedback
     fb = FeedbackConverter(args.task_key_path, args.phone_key_path, lower_bound_100, upper_bound_100)
